@@ -813,25 +813,145 @@ function makeQ(topic, diff){
   // ── 5° AÑO ──────────────────────────────────────────────────────────────
 
   else if(topic==='limites'){
-    if(d<=2){q='lím(x→2) x² =';answer='4';}
-    else if(d<=3){q='lím(x→∞) 1/x =';answer='0';}
-    else if(d<=4){var a=rnd(2,6);q='lím(x→0) (x+'+a+')/x → ¿existe?';answer='No';isStr=true;}
-    else{q='lím(x→3) (x²−9)/(x−3) =';answer='6';}
+    // Pool de variantes con números aleatorios en cada una
+    var limCases = [];
+
+    if(d<=2){
+      // Límites directos por sustitución
+      limCases=[
+        function(){var a=rnd(1,6),n=rnd(2,3);var r=Math.pow(a,n);return{q:'lím(x→'+a+') x'+sup(n)+' =',a:String(r)};},
+        function(){var a=rnd(1,8),b=rnd(-6,6);var r=a+b;return{q:'lím(x→'+a+') (x + '+b+') =',a:String(r)};},
+        function(){var a=rnd(2,8),c=rnd(1,5);var r=a*c;return{q:'lím(x→'+a+') '+c+'x =',a:String(r)};},
+        function(){var a=rnd(1,6);return{q:'lím(x→'+a+') '+a+' =',a:String(a)};},
+        function(){var a=rnd(2,7),b=rnd(1,5);return{q:'lím(x→'+a+') (x² − '+b+') =',a:String(a*a-b)};},
+      ];
+    } else if(d<=3){
+      // Límites en infinito y laterales simples
+      limCases=[
+        function(){var n=rnd(1,4);return{q:'lím(x→∞) 1/x'+sup(n)+' =',a:'0'};},
+        function(){var a=rnd(2,8);return{q:'lím(x→∞) '+a+'/x =',a:'0'};},
+        function(){var a=rnd(1,5),b=rnd(1,5);return{q:'lím(x→∞) ('+a+'x)/('+b+'x) =',a:String(a/b%1===0?a/b:(a/b).toFixed(2))};},
+        function(){var a=rnd(2,6);return{q:'lím(x→0⁺) 1/x =',a:'+∞',str:true};},
+        function(){var c=rnd(2,8);return{q:'lím(x→∞) (x+'+c+')/x =',a:'1'};},
+        function(){var a=rnd(2,9);return{q:'lím(x→∞) x/x² =',a:'0'};},
+      ];
+    } else if(d<=4){
+      // Indeterminaciones 0/0 por factorización
+      limCases=[
+        function(){var r=rnd(1,7);return{q:'lím(x→'+r+') (x²−'+(r*r)+')/(x−'+r+') =',a:String(2*r)};},
+        function(){var r=rnd(1,6);var s=r+rnd(1,4);return{q:'lím(x→'+r+') (x−'+r+')(x−'+s+')/(x−'+r+') =',a:String(r-s)};},
+        function(){var r=rnd(2,6);return{q:'lím(x→'+r+') (x²−'+(r*r)+')/(x²−'+(2*r)+'x+'+(r*r)+') → ¿existe?',a:'No',str:true};},
+        function(){var a=rnd(2,5),b=rnd(1,4);return{q:'lím(x→∞) ('+a+'x²+'+b+')/(x²) =',a:String(a)};},
+        function(){var a=rnd(1,5),b=rnd(1,5);return{q:'lím(x→∞) ('+a+'x+'+b+')/('+b+'x+'+a+') =',a:String(a/b%1===0?a/b:(a/b).toFixed(2))};},
+      ];
+    } else {
+      // Nivel experto: regla de L'Hôpital, límites notables
+      limCases=[
+        function(){var r=rnd(-5,5);return{q:'lím(x→'+r+') (x²−'+(r*r)+')/(x−'+r+') =',a:String(2*r)};},
+        function(){return{q:'lím(x→0) sen(x)/x =',a:'1'};},
+        function(){return{q:'lím(x→0) (eˣ−1)/x =',a:'1'};},
+        function(){var a=rnd(2,6);return{q:'lím(x→∞) ('+a+'x³+1)/(x³) =',a:String(a)};},
+        function(){return{q:'lím(x→0) (1−cos x)/x² =',a:'1/2',str:true};},
+        function(){var a=rnd(2,5);return{q:'lím(x→'+a+') √x =',a:String(Math.sqrt(a)%1===0?Math.sqrt(a):Math.sqrt(a).toFixed(2))};},
+      ];
+    }
+    var c=pick(limCases)();
+    q=c.q; answer=c.a; isStr=!!c.str;
   }
 
   else if(topic==='derivadas'){
-    var n=rnd(2,4+d),a=rnd(1,5);
-    if(d<=2){q="f(x)=x"+sup(2)+" → f'(x)=";answer='2x';isStr=true;}
-    else if(d<=3){q="f(x)="+a+"x"+sup(n)+" → f'(x)=";answer=(a*n)+'x'+sup(n-1);isStr=true;}
-    else if(d<=4){q="f(x)=x"+sup(2)+"+3x+1 → f'(x)=";answer='2x+3';isStr=true;}
-    else{q="f(x)=sen(x) → f'(x)=";answer='cos(x)';isStr=true;}
+    var derCases=[];
+    if(d<=2){
+      // Regla de la potencia básica
+      derCases=[
+        function(){var n=rnd(2,5);return{q:"f(x) = x"+sup(n)+" → f'(x) =",a:''+n+'x'+sup(n-1),str:true};},
+        function(){var a=rnd(2,8);return{q:"f(x) = "+a+"x → f'(x) =",a:String(a),str:true};},
+        function(){var c=rnd(1,9);return{q:"f(x) = "+c+" → f'(x) =",a:'0',str:true};},
+        function(){var n=rnd(2,4),a=rnd(2,6);return{q:"f("+rnd(1,5)+") con f(x)="+a+"x"+sup(n),a:String(a*Math.pow(rnd(1,5),n)),str:false};},
+        function(){return{q:"(x³)' =",a:'3x²',str:true};},
+        function(){return{q:"(x⁴)' =",a:'4x³',str:true};},
+      ];
+    } else if(d<=3){
+      // Suma/resta de términos
+      derCases=[
+        function(){var a=rnd(2,6),b=rnd(1,8),c=rnd(1,6);return{q:"f(x)="+a+"x²+"+b+"x+"+c+" → f'(x)=",a:(2*a)+'x+'+b,str:true};},
+        function(){var a=rnd(2,8),n=rnd(2,5);return{q:"f(x)="+a+"x"+sup(n)+" → f'(x)=",a:(a*n)+'x'+sup(n-1),str:true};},
+        function(){var a=rnd(1,6),b=rnd(1,6);return{q:"f(x)="+a+"x³+"+b+"x² → f'(x)=",a:(3*a)+'x²+'+(2*b)+'x',str:true};},
+        function(){var a=rnd(2,7),b=rnd(1,5);return{q:"f(x)="+a+"x²−"+b+" → f'(0)=",a:'0'};},
+        function(){var a=rnd(1,5),b=rnd(2,6);return{q:"f(x)="+a+"x+"+b+" → f'(x)=",a:String(a),str:true};},
+      ];
+    } else if(d<=4){
+      // Funciones trigonométricas y compuestas simples
+      derCases=[
+        function(){return{q:"f(x)=sen(x) → f'(x)=",a:'cos(x)',str:true};},
+        function(){return{q:"f(x)=cos(x) → f'(x)=",a:'−sen(x)',str:true};},
+        function(){var a=rnd(2,6);return{q:"f(x)="+a+"sen(x) → f'(x)=",a:a+'cos(x)',str:true};},
+        function(){var a=rnd(2,5);return{q:"f(x)=sen("+a+"x) → f'(x)=",a:a+'cos('+a+'x)',str:true};},
+        function(){return{q:"f(x)=eˣ → f'(x)=",a:'eˣ',str:true};},
+        function(){return{q:"f(x)=ln(x) → f'(x)=",a:'1/x',str:true};},
+        function(){var a=rnd(2,5),b=rnd(1,4);return{q:"f(x)="+a+"x³−"+b+"x → f'(x)=",a:(3*a)+'x²−'+b,str:true};},
+      ];
+    } else {
+      // Regla del producto, cociente, cadena
+      derCases=[
+        function(){return{q:"f(x)=x·sen(x) → f'(x)=",a:'sen(x)+x·cos(x)',str:true};},
+        function(){return{q:"f(x)=x²·eˣ → f'(x)=",a:'2x·eˣ+x²·eˣ',str:true};},
+        function(){return{q:"f(x)=sen(x²) → f'(x)=",a:'2x·cos(x²)',str:true};},
+        function(){return{q:"f(x)=ln(x²) → f'(x)=",a:'2/x',str:true};},
+        function(){var a=rnd(2,5);return{q:"f(x)=eˣ·x → f'(0)=",a:'1'};},
+        function(){return{q:"f(x)=(x²+1)³ → f'(x)=",a:'6x(x²+1)²',str:true};},
+      ];
+    }
+    var c=pick(derCases)();
+    q=c.q; answer=c.a; isStr=!!c.str;
   }
 
   else if(topic==='integrales'){
-    if(d<=2){q='∫2x dx =';answer='x²+C';isStr=true;}
-    else if(d<=3){q='∫x² dx =';answer='x³/3+C';isStr=true;}
-    else if(d<=4){q='∫[0→2] x dx =';answer='2';}
-    else{q='∫cos(x) dx =';answer='sen(x)+C';isStr=true;}
+    var intCases=[];
+    if(d<=2){
+      // Integrales inmediatas básicas
+      intCases=[
+        function(){var n=rnd(1,3),a=rnd(1,6);return{q:'∫'+a+' dx =',a:a+'x+C',str:true};},
+        function(){var a=rnd(1,5);return{q:'∫'+a+'x dx =',a:(a/2%1===0?(a/2):'('+a+'/2)')+'x²+C',str:true};},
+        function(){return{q:'∫x dx =',a:'x²/2+C',str:true};},
+        function(){return{q:'∫x² dx =',a:'x³/3+C',str:true};},
+        function(){var n=rnd(2,4);return{q:'∫x'+sup(n)+' dx =',a:'x'+sup(n+1)+'/'+(n+1)+'+C',str:true};},
+        function(){var a=rnd(2,5);return{q:'∫'+a+'x² dx =',a:(a/3%1===0?(a/3)+'x³':'('+a+'/3)x³')+'+C',str:true};},
+      ];
+    } else if(d<=3){
+      // Integrales definidas simples
+      intCases=[
+        function(){var b=rnd(1,5);return{q:'∫[0→'+b+'] x dx =',a:String(b*b/2)};},
+        function(){var b=rnd(1,4);return{q:'∫[0→'+b+'] x² dx =',a:(b*b*b/3).toFixed(b*b*b%3===0?0:2)};},
+        function(){var a=rnd(1,4),b=rnd(a+1,7);return{q:'∫['+a+'→'+b+'] 1 dx =',a:String(b-a)};},
+        function(){var b=rnd(1,5);return{q:'∫[0→'+b+'] 2x dx =',a:String(b*b)};},
+        function(){var a=rnd(1,3),b=rnd(a+1,5);return{q:'∫['+a+'→'+b+'] 2 dx =',a:String(2*(b-a))};},
+        function(){return{q:'∫[0→1] x³ dx =',a:'1/4',str:true};},
+      ];
+    } else if(d<=4){
+      // Integrales de funciones trigonométricas y exponenciales
+      intCases=[
+        function(){return{q:'∫cos(x) dx =',a:'sen(x)+C',str:true};},
+        function(){return{q:'∫sen(x) dx =',a:'−cos(x)+C',str:true};},
+        function(){return{q:'∫eˣ dx =',a:'eˣ+C',str:true};},
+        function(){return{q:'∫1/x dx =',a:'ln|x|+C',str:true};},
+        function(){var a=rnd(2,5);return{q:'∫'+a+'eˣ dx =',a:a+'eˣ+C',str:true};},
+        function(){return{q:'∫[0→π] sen(x) dx =',a:'2'};},
+        function(){return{q:'∫[0→1] eˣ dx =',a:'e−1',str:true};},
+      ];
+    } else {
+      // Integrales por sustitución
+      intCases=[
+        function(){var a=rnd(2,6);return{q:'∫'+a+'x·x² dx = ∫'+a+'x³ dx =',a:'('+a+'/4)x⁴+C',str:true};},
+        function(){return{q:'∫x·eˣ² dx =',a:'eˣ²/2+C',str:true};},
+        function(){return{q:'∫sen(x)·cos(x) dx =',a:'sen²(x)/2+C',str:true};},
+        function(){var a=rnd(2,5);return{q:'∫'+a+'x/(x²+1) dx =',a:'('+a+'/2)·ln(x²+1)+C',str:true};},
+        function(){return{q:'∫[0→1] 2x(x²+1)⁴ dx =',a:'(2⁵−1)/5',str:true};},
+        function(){return{q:'∫eˢᵉⁿ⁽ˣ⁾·cos(x) dx =',a:'eˢᵉⁿ⁽ˣ⁾+C',str:true};},
+      ];
+    }
+    var c=pick(intCases)();
+    q=c.q; answer=c.a; isStr=!!c.str;
   }
 
   else if(topic==='vectores'){
@@ -876,7 +996,6 @@ function makeQ(topic, diff){
 function factorial(n){if(n<=1)return 1;var r=1;for(var i=2;i<=n;i++)r*=i;return r;}
 
 function makeDistractors(correct, topic, diff){
-  // Topic-specific distractors
   var pool={
     'Verdadero':['Falso','Indefinido','Depende'],
     'Falso':['Verdadero','Indefinido','Depende'],
@@ -887,16 +1006,40 @@ function makeDistractors(correct, topic, diff){
     'Irracional':['Racional','Natural','Entero'],
     'Racional':['Irracional','Imaginario','Complejo'],
     'Dispersión':['Tendencia central','Frecuencia','Probabilidad'],
-    'cos(x)':['sen(x)','-sen(x)','-cos(x)'],
-    'sen(x)+C':['cos(x)+C','-cos(x)+C','tan(x)+C'],
-    'x²+C':['2x+C','x+C','x³+C'],
-    'x³/3+C':['x²/2+C','3x²+C','x³+C'],
-    '2x+3':['2x-3','x+3','2x'],
-    '2x':['x²','3x','x'],
+    // Derivadas
+    'cos(x)':['sen(x)','-sen(x)','-cos(x)','tan(x)'],
+    '−sen(x)':['-cos(x)','sen(x)','cos(x)','tan(x)'],
+    'eˣ':['xeˣ','eˣ+C','ln(x)','1/x'],
+    '1/x':['ln(x)','x⁻²','-1/x²','1/x²'],
+    '2x':['x²','x','3x','2'],
+    '2x+3':['2x-3','x+3','2x','3x+2'],
+    '3x²':['2x³','x³','6x','3x'],
+    '4x³':['3x⁴','2x²','4x','x⁴'],
+    'sen(x)+x·cos(x)':['cos(x)+x·sen(x)','x·cos(x)','sen(x)·cos(x)','x+cos(x)'],
+    '2x·cos(x²)':['cos(x²)','2cos(x)','x²·cos(x)','−2x·sen(x²)'],
+    '2/x':['1/x','ln(2x)','2ln(x)','1/(2x)'],
+    // Integrales
+    'x²/2+C':['x²+C','x/2+C','2x+C','x³/3+C'],
+    'x³/3+C':['x³+C','3x²+C','x²/2+C','x⁴/4+C'],
+    'sen(x)+C':['cos(x)+C','-cos(x)+C','tan(x)+C','-sen(x)+C'],
+    '−cos(x)+C':['cos(x)+C','sen(x)+C','-sen(x)+C','tan(x)+C'],
+    'eˣ+C':['eˣ','xeˣ+C','ln(x)+C','eˣ/x+C'],
+    'ln|x|+C':['1/x+C','log(x)+C','1/x²+C','ln(x²)+C'],
+    'eˣ²/2+C':['eˣ²+C','2x·eˣ²+C','eˣ/2+C','x·eˣ²+C'],
+    // Límites
+    '0':['1','∞','−1'],
+    '1':['0','∞','2'],
+    '+∞':['-∞','0','1'],
+    '1/2':['1','2','0'],
+    'e−1':['e','e+1','1'],
   };
   if(pool[correct]) return pool[correct];
-  // Generic: modify the answer slightly
-  return [correct+'²', correct+'−1', correct+'+2'];
+  // Generic numeric distractor
+  var num=parseFloat(correct);
+  if(!isNaN(num)){
+    return [String(num+1),String(num-1),String(num*2)];
+  }
+  return [correct+'²', correct.replace('x','x²'), correct.replace('+','−')];
 }
 
 /* ═══════════════════════════
@@ -1208,22 +1351,173 @@ function sndPerfect(){if(!soundEnabled)return;[440,550,660,880,1100].forEach(fun
 function sndTimeout(){if(!soundEnabled)return;tone(330,0,.08,.14,'square');tone(220,.1,.08,.12,'square');tone(165,.2,.2,.12,'square');}
 function sndClick(){if(!soundEnabled)return;tone(800,0,.04,.06,'sine');}
 
-// Techno music loop
-var BPM=140,B=60/BPM;
-var LEAD=[[880,B/2],[0,B/4],[880,B/4],[1047,B/2],[880,B/2],[784,B/2],[880,B],[0,B/2],[784,B/2],[880,B/2],[0,B/4],[784,B/4],[698,B/2],[784,B/2],[659,B/2],[784,B]];
-var BASS2=[[110,B/2],[0,B/2],[110,B/2],[0,B/4],[131,B/4],[110,B/2],[0,B/2],[110,B/2],[0,B/2],[110,B/2],[0,B/2],[110,B/4],[0,B/4],[147,B/2],[110,B],[0,B]];
+// EDM AGRESIVO — 160 BPM, onda sawtooth distorsionada, bajo profundo, arpegios neón
+var BPM=160, B=60/BPM;
+
+// Melodía principal: arpegio agresivo en modo frigio
+var LEAD=[
+  [0,B/4],[1047,B/4],[0,B/4],[1047,B/4],
+  [1175,B/2],[0,B/4],[1047,B/4],
+  [988,B/2],[0,B/4],[880,B/4],
+  [988,B],[0,B/2],[784,B/2],
+  [0,B/4],[880,B/4],[0,B/4],[880,B/4],
+  [1047,B/2],[0,B/4],[988,B/4],
+  [880,B/2],[0,B/4],[784,B/4],
+  [880,B],[0,B],
+];
+
+// Bajo pesado con drive
+var BASS2=[
+  [55,B/2],[0,B/4],[55,B/4],[55,B/2],[0,B/2],
+  [55,B/4],[0,B/4],[62,B/4],[0,B/4],[55,B/2],[0,B/2],
+  [49,B/2],[0,B/4],[49,B/4],[49,B/2],[0,B/2],
+  [49,B/4],[0,B/4],[55,B/4],[0,B/4],[49,B],[0,B],
+  [55,B/2],[0,B/4],[55,B/4],[55,B/2],[0,B/2],
+  [55,B/4],[0,B/4],[65,B/4],[0,B/4],[55,B/2],[0,B/2],
+  [52,B/2],[0,B/4],[52,B/4],[52,B/2],[0,B/2],
+  [52,B/4],[0,B/4],[55,B/4],[0,B/4],[52,B],[0,B],
+];
+
+// Pad oscuro de fondo (acorde sostenido)
+var PAD=[
+  [220,B*2],[0,B],[220,B*2],[0,B],
+  [196,B*2],[0,B],[196,B*2],[0,B],
+];
 
 function scheduleLoop(){
   if(!musicPlaying||!soundEnabled)return;
   try{
     var ctx=getCtx();if(!ctx||!_actxReady){musicPlaying=false;return;}
-    var t=ctx.currentTime+0.05,mt=0,bt=0;
-    LEAD.forEach(function(n){if(n[0]>0){var o=ctx.createOscillator(),g=ctx.createGain();o.connect(g);g.connect(ctx.destination);o.type='square';o.frequency.value=n[0];g.gain.setValueAtTime(0.001,t+mt);g.gain.linearRampToValueAtTime(0.04,t+mt+0.01);g.gain.exponentialRampToValueAtTime(0.001,t+mt+n[1]*.7);o.start(t+mt);o.stop(t+mt+n[1]);}mt+=n[1];});
-    BASS2.forEach(function(n){if(n[0]>0){var o=ctx.createOscillator(),g=ctx.createGain();o.connect(g);g.connect(ctx.destination);o.type='sawtooth';o.frequency.value=n[0];g.gain.setValueAtTime(0.001,t+bt);g.gain.linearRampToValueAtTime(0.08,t+bt+0.01);g.gain.exponentialRampToValueAtTime(0.001,t+bt+n[1]*.6);o.start(t+bt);o.stop(t+bt+n[1]);}bt+=n[1];});
-    for(var k=0;k<8;k++){(function(ki){try{var o=ctx.createOscillator(),g=ctx.createGain();o.type='sine';var kt=t+ki*(B/2);o.frequency.setValueAtTime(180,kt);o.frequency.exponentialRampToValueAtTime(40,kt+.08);g.gain.setValueAtTime(0.001,kt);g.gain.linearRampToValueAtTime(0.2,kt+.008);g.gain.exponentialRampToValueAtTime(0.001,kt+.12);o.connect(g);g.connect(ctx.destination);o.start(kt);o.stop(kt+.15);}catch(e){}})(k);}
-    for(var h=0;h<16;h++){(function(hi){if(hi%2!==0)return;try{var buf=ctx.createBuffer(1,256,ctx.sampleRate),data=buf.getChannelData(0);for(var s=0;s<256;s++)data[s]=Math.random()*2-1;var src=ctx.createBufferSource(),gn=ctx.createGain(),filt=ctx.createBiquadFilter();filt.type='highpass';filt.frequency.value=10000;src.buffer=buf;src.connect(filt);filt.connect(gn);gn.connect(ctx.destination);var ht=t+hi*(B/2);gn.gain.setValueAtTime(0.001,ht);gn.gain.linearRampToValueAtTime(.04,ht+.004);gn.gain.exponentialRampToValueAtTime(0.001,ht+.03);src.start(ht);src.stop(ht+.04);}catch(e){}})(h);}
-    var dur=LEAD.reduce(function(s,n){return s+n[1];},0);
-    musicTimeout=setTimeout(scheduleLoop,(dur-.1)*1000);
+    var t=ctx.currentTime+0.05;
+
+    // LEAD — sawtooth distorsionado con filtro paso bajo
+    var mt=0;
+    LEAD.forEach(function(n){
+      if(n[0]>0){
+        try{
+          var o=ctx.createOscillator(),g=ctx.createGain(),filt=ctx.createBiquadFilter();
+          filt.type='lowpass'; filt.frequency.value=3200; filt.Q.value=8;
+          o.connect(filt); filt.connect(g); g.connect(ctx.destination);
+          o.type='sawtooth'; o.frequency.value=n[0];
+          g.gain.setValueAtTime(0.001,t+mt);
+          g.gain.linearRampToValueAtTime(0.06,t+mt+0.008);
+          g.gain.exponentialRampToValueAtTime(0.001,t+mt+n[1]*.75);
+          o.start(t+mt); o.stop(t+mt+n[1]);
+          // Capa cuadrada para cuerpo
+          var o2=ctx.createOscillator(),g2=ctx.createGain();
+          o2.connect(g2); g2.connect(ctx.destination);
+          o2.type='square'; o2.frequency.value=n[0]/2; // sub-octava
+          g2.gain.setValueAtTime(0.001,t+mt);
+          g2.gain.linearRampToValueAtTime(0.025,t+mt+0.01);
+          g2.gain.exponentialRampToValueAtTime(0.001,t+mt+n[1]*.5);
+          o2.start(t+mt); o2.stop(t+mt+n[1]);
+        }catch(e){}
+      }
+      mt+=n[1];
+    });
+
+    // BAJO — sine+sawtooth con envelope lento (punch)
+    var bt=0;
+    BASS2.forEach(function(n){
+      if(n[0]>0){
+        try{
+          var o=ctx.createOscillator(),g=ctx.createGain();
+          o.connect(g); g.connect(ctx.destination);
+          o.type='sine'; o.frequency.value=n[0];
+          g.gain.setValueAtTime(0.001,t+bt);
+          g.gain.linearRampToValueAtTime(0.22,t+bt+0.005);
+          g.gain.exponentialRampToValueAtTime(0.001,t+bt+n[1]*.85);
+          o.start(t+bt); o.stop(t+bt+n[1]);
+          // Distorsión sub
+          var o3=ctx.createOscillator(),g3=ctx.createGain(),f3=ctx.createBiquadFilter();
+          f3.type='lowpass'; f3.frequency.value=200;
+          o3.connect(f3); f3.connect(g3); g3.connect(ctx.destination);
+          o3.type='sawtooth'; o3.frequency.value=n[0];
+          g3.gain.setValueAtTime(0.001,t+bt);
+          g3.gain.linearRampToValueAtTime(0.05,t+bt+0.01);
+          g3.gain.exponentialRampToValueAtTime(0.001,t+bt+n[1]*.4);
+          o3.start(t+bt); o3.stop(t+bt+n[1]);
+        }catch(e){}
+      }
+      bt+=n[1];
+    });
+
+    // PAD oscuro de fondo
+    var pt=0;
+    PAD.forEach(function(n){
+      if(n[0]>0){
+        try{
+          var o=ctx.createOscillator(),g=ctx.createGain(),filt=ctx.createBiquadFilter();
+          filt.type='lowpass'; filt.frequency.value=600;
+          o.connect(filt); filt.connect(g); g.connect(ctx.destination);
+          o.type='sawtooth'; o.frequency.value=n[0];
+          g.gain.setValueAtTime(0.001,t+pt);
+          g.gain.linearRampToValueAtTime(0.018,t+pt+0.3);
+          g.gain.setValueAtTime(0.018,t+pt+n[1]-0.1);
+          g.gain.exponentialRampToValueAtTime(0.001,t+pt+n[1]);
+          o.start(t+pt); o.stop(t+pt+n[1]);
+        }catch(e){}
+      }
+      pt+=n[1];
+    });
+
+    // BOMBO: cada beat (4 por compás)
+    var beats=Math.round(LEAD.reduce(function(s,n){return s+n[1];},0)/B);
+    for(var k=0;k<beats;k++){
+      (function(ki){
+        try{
+          var o=ctx.createOscillator(),g=ctx.createGain();
+          o.type='sine'; var kt=t+ki*B;
+          o.frequency.setValueAtTime(160,kt);
+          o.frequency.exponentialRampToValueAtTime(35,kt+0.12);
+          g.gain.setValueAtTime(0.001,kt);
+          g.gain.linearRampToValueAtTime(0.35,kt+0.005);
+          g.gain.exponentialRampToValueAtTime(0.001,kt+0.18);
+          o.connect(g); g.connect(ctx.destination);
+          o.start(kt); o.stop(kt+0.2);
+        }catch(e){}
+      })(k);
+    }
+
+    // SNARE en los tiempos 2 y 4 de cada compás
+    for(var s=0;s<beats/4*2;s++){
+      (function(si){
+        try{
+          var buf=ctx.createBuffer(1,ctx.sampleRate*.15,ctx.sampleRate);
+          var data=buf.getChannelData(0);
+          for(var i=0;i<data.length;i++) data[i]=(Math.random()*2-1)*Math.pow(1-i/data.length,1.5);
+          var src=ctx.createBufferSource(),g=ctx.createGain(),filt=ctx.createBiquadFilter();
+          filt.type='highpass'; filt.frequency.value=2000;
+          src.buffer=buf; src.connect(filt); filt.connect(g); g.connect(ctx.destination);
+          var st=t+(si*2+1)*B; // beats 2,4,6,8...
+          g.gain.setValueAtTime(0.001,st);
+          g.gain.linearRampToValueAtTime(0.12,st+0.003);
+          g.gain.exponentialRampToValueAtTime(0.001,st+0.14);
+          src.start(st); src.stop(st+0.16);
+        }catch(e){}
+      })(s);
+    }
+
+    // HI-HAT cerrado cada corchea
+    for(var h=0;h<beats*2;h++){
+      (function(hi){
+        try{
+          var buf=ctx.createBuffer(1,512,ctx.sampleRate),data=buf.getChannelData(0);
+          for(var i=0;i<512;i++) data[i]=Math.random()*2-1;
+          var src=ctx.createBufferSource(),g=ctx.createGain(),filt=ctx.createBiquadFilter();
+          filt.type='highpass'; filt.frequency.value=9000;
+          src.buffer=buf; src.connect(filt); filt.connect(g); g.connect(ctx.destination);
+          var ht=t+hi*(B/2);
+          g.gain.setValueAtTime(0.001,ht);
+          g.gain.linearRampToValueAtTime(hi%2===0?.045:.025,ht+.003);
+          g.gain.exponentialRampToValueAtTime(0.001,ht+.04);
+          src.start(ht); src.stop(ht+.05);
+        }catch(e){}
+      })(h);
+    }
+
+    var loopDur=LEAD.reduce(function(s,n){return s+n[1];},0);
+    musicTimeout=setTimeout(scheduleLoop,(loopDur-.1)*1000);
   }catch(e){musicPlaying=false;}
 }
 function playMusic(){if(!soundEnabled||musicPlaying)return;musicPlaying=true;scheduleLoop();}
