@@ -268,6 +268,29 @@ body::before{content:'';position:fixed;inset:0;background:repeating-linear-gradi
 .frac .fn{border-bottom:2px solid currentColor;padding:0 3px 1px;font-size:.75em;}
 .frac .fd{padding:1px 3px 0;font-size:.75em;}
 
+/* ── APA — Ayuda Para Avanzar ── */
+.apa-overlay{position:fixed;inset:0;background:rgba(0,0,0,.78);z-index:400;align-items:flex-end;justify-content:center;animation:apaIn .3s ease;}
+@keyframes apaIn{from{opacity:0}to{opacity:1}}
+.apa-panel{background:linear-gradient(180deg,#0d0d24,#060612);border:1px solid var(--cyan);border-bottom:none;border-radius:20px 20px 0 0;padding:0 0 2rem;width:100%;max-width:430px;max-height:88vh;overflow-y:auto;animation:apaSlide .35s cubic-bezier(.34,1.2,.64,1);box-shadow:0 -8px 40px rgba(0,245,255,.2);}
+@keyframes apaSlide{from{transform:translateY(100%)}to{transform:translateY(0)}}
+.apa-handle{width:40px;height:4px;background:rgba(0,245,255,.3);border-radius:2px;margin:12px auto 0;}
+.apa-header{display:flex;align-items:center;gap:10px;padding:1rem 1.2rem .6rem;}
+.apa-funsi{width:44px;height:44px;flex-shrink:0;filter:drop-shadow(0 0 8px var(--cyan));}
+.apa-bubble{background:rgba(0,245,255,.06);border:1px solid rgba(0,245,255,.2);border-radius:4px 14px 14px 14px;padding:10px 14px;font-size:13px;font-weight:600;color:var(--cyan);line-height:1.5;flex:1;font-family:'JetBrains Mono',monospace;}
+.apa-tag{font-family:'Orbitron',monospace;font-size:10px;font-weight:700;color:var(--purple);letter-spacing:2px;text-transform:uppercase;padding:.6rem 1.2rem .2rem;display:block;}
+.apa-title{font-family:'Orbitron',monospace;font-size:15px;font-weight:900;color:var(--text);padding:0 1.2rem .6rem;}
+.apa-steps{padding:0 1.2rem;display:flex;flex-direction:column;gap:8px;margin-bottom:.8rem;}
+.apa-step{display:flex;gap:10px;align-items:flex-start;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.07);border-radius:8px;padding:.7rem .9rem;}
+.apa-step-num{font-family:'Orbitron',monospace;font-size:13px;font-weight:900;color:var(--cyan);min-width:22px;flex-shrink:0;text-shadow:0 0 6px var(--cyan);}
+.apa-step-text{font-size:13px;color:var(--text);font-weight:600;line-height:1.5;font-family:'JetBrains Mono',monospace;}
+.apa-example{margin:0 1.2rem .8rem;background:rgba(0,255,136,.05);border:1px solid rgba(0,255,136,.2);border-radius:8px;padding:.8rem 1rem;}
+.apa-ex-title{font-size:10px;font-weight:700;color:var(--green);letter-spacing:1.5px;text-transform:uppercase;font-family:'Orbitron',monospace;margin-bottom:6px;}
+.apa-ex-body{font-size:13px;color:var(--text);font-family:'JetBrains Mono',monospace;line-height:1.8;}
+.apa-formula{margin:0 1.2rem .8rem;background:rgba(199,125,255,.06);border:1px solid rgba(199,125,255,.2);border-radius:8px;padding:.7rem 1rem;display:flex;align-items:center;gap:10px;}
+.apa-formula-icon{font-size:20px;}
+.apa-formula-text{font-size:13px;color:var(--purple);font-family:'JetBrains Mono',monospace;font-weight:700;line-height:1.6;}
+.apa-btn{display:block;width:calc(100% - 2.4rem);margin:0 1.2rem;background:linear-gradient(135deg,var(--cyan),var(--blue));border:none;border-radius:8px;padding:.9rem;font-family:'Orbitron',monospace;font-size:13px;font-weight:700;color:#000;cursor:pointer;letter-spacing:.5px;text-transform:uppercase;box-shadow:0 4px 16px rgba(0,245,255,.25);}
+
 /* ── CONFETTI ── */
 .conf{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:999;overflow:hidden;}
 .cp{position:absolute;top:-20px;border-radius:2px;}
@@ -277,6 +300,33 @@ body::before{content:'';position:fixed;inset:0;background:repeating-linear-gradi
 .sec-title{font-family:'Orbitron',monospace;font-size:22px;font-weight:900;color:var(--text);margin-bottom:4px;letter-spacing:1px;}
 .sec-sub{font-size:13px;color:var(--text2);font-weight:600;margin-bottom:1rem;line-height:1.5;font-family:'JetBrains Mono',monospace;}
 .weak-title{font-family:'Orbitron',monospace;font-size:10px;font-weight:700;color:var(--text2);margin:0 1rem .5rem;text-transform:uppercase;letter-spacing:2px;}
+
+/* ── APA PANEL ── */
+.apa-overlay{position:fixed;inset:0;background:rgba(0,0,0,.75);z-index:500;display:flex;align-items:flex-end;justify-content:center;animation:apaIn .25s ease;}
+@keyframes apaIn{from{opacity:0}to{opacity:1}}
+.apa-panel{background:var(--card);border:1px solid var(--cyan);border-bottom:none;border-radius:20px 20px 0 0;padding:0 0 2rem;width:100%;max-width:430px;max-height:88vh;overflow-y:auto;animation:apaUp .4s cubic-bezier(.34,1.2,.64,1);box-shadow:0 -8px 40px rgba(0,245,255,.15);}
+@keyframes apaUp{from{transform:translateY(100%)}to{transform:translateY(0)}}
+.apa-handle{width:40px;height:4px;background:rgba(0,245,255,.3);border-radius:2px;margin:12px auto 0;}
+.apa-header{display:flex;align-items:center;gap:10px;padding:1rem 1.2rem .4rem;}
+.apa-funsi-svg{width:46px;height:46px;flex-shrink:0;filter:drop-shadow(0 0 8px var(--cyan));}
+.apa-bubble{background:rgba(0,245,255,.06);border:1px solid rgba(0,245,255,.2);border-radius:4px 14px 14px 14px;padding:10px 14px;font-size:13px;font-weight:600;color:var(--cyan);line-height:1.5;flex:1;font-family:'JetBrains Mono',monospace;}
+.apa-tag-row{display:flex;align-items:center;gap:6px;margin:.3rem 1.2rem;padding:.4rem .8rem;background:rgba(199,125,255,.1);border:1px solid rgba(199,125,255,.3);border-radius:8px;}
+.apa-tag-text{font-family:'Orbitron',monospace;font-size:10px;font-weight:700;color:var(--purple);letter-spacing:1.5px;text-transform:uppercase;}
+.apa-title{font-family:'Orbitron',monospace;font-size:14px;font-weight:900;color:var(--text);padding:.2rem 1.2rem .5rem;}
+.apa-steps{padding:0 1.2rem;display:flex;flex-direction:column;gap:7px;margin-bottom:.8rem;}
+.apa-step{display:flex;gap:8px;align-items:flex-start;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.07);border-radius:8px;padding:.65rem .9rem;}
+.apa-step-num{font-family:'Orbitron',monospace;font-size:12px;font-weight:900;color:var(--cyan);min-width:20px;flex-shrink:0;}
+.apa-step-text{font-size:13px;color:var(--text);font-weight:600;line-height:1.5;font-family:'JetBrains Mono',monospace;}
+.apa-ex-box{margin:0 1.2rem .7rem;background:rgba(0,255,136,.05);border:1px solid rgba(0,255,136,.2);border-radius:10px;padding:.8rem 1rem;}
+.apa-ex-title{font-size:10px;font-weight:700;color:var(--green);letter-spacing:1.5px;text-transform:uppercase;font-family:'Orbitron',monospace;margin-bottom:6px;}
+.apa-ex-body{font-size:13px;color:var(--text);font-family:'JetBrains Mono',monospace;line-height:1.8;}
+.apa-ex-line{display:flex;align-items:baseline;gap:6px;margin:1px 0;}
+.apa-arrow{color:var(--green);font-size:14px;min-width:16px;}
+.apa-bullet{color:var(--cyan);font-size:12px;min-width:16px;}
+.apa-formula-box{margin:0 1.2rem .8rem;background:rgba(255,204,0,.06);border:1px solid rgba(255,204,0,.2);border-radius:10px;padding:.8rem 1rem;}
+.apa-formula-title{font-size:10px;font-weight:700;color:var(--yellow);letter-spacing:1.5px;text-transform:uppercase;font-family:'Orbitron',monospace;margin-bottom:5px;}
+.apa-formula-text{font-size:13px;color:var(--yellow);font-family:'JetBrains Mono',monospace;font-weight:700;line-height:1.7;}
+.apa-close-btn{display:block;width:calc(100% - 2.4rem);margin:0 1.2rem;background:linear-gradient(135deg,var(--cyan),var(--blue));border:none;border-radius:8px;padding:.85rem;font-family:'Orbitron',monospace;font-size:12px;font-weight:700;color:#000;cursor:pointer;letter-spacing:.5px;text-transform:uppercase;}
 </style>
 </head>
 <body>
@@ -697,15 +747,70 @@ function makeQ(topic, diff){
   }
 
   else if(topic==='probabilidad'){
-    if(d<=2){q='P(cara en moneda) =';answer='1/2';isStr=true;}
-    else if(d<=3){var n=rnd(1,5);q='P(sacar '+n+' en dado) =';answer='1/6';isStr=true;}
+    // Helper: genera fracciones plausibles como distractores
+    function fracDistract(num, den, count) {
+      var ws = new Set();
+      var att = 0;
+      while(ws.size < count && att++ < 200) {
+        var wn = rnd(1, den+2), wd = rnd(2, den+3);
+        var wg = gcd(wn, wd);
+        var s = (wn/wg) + '/' + (wd/wg);
+        if(s !== (num/gcd(num,den)) + '/' + (den/gcd(num,den)) && wd >= wn) ws.add(s);
+      }
+      return Array.from(ws).slice(0, count);
+    }
+
+    if(d<=2){
+      // Variado: moneda, dado, cartas, bolillas simples
+      var probCases=[
+        function(){return{q:'P(cara en una moneda) =',n:1,d:2};},
+        function(){var n=rnd(1,3);return{q:'P(sacar número ≤ '+n+' en dado) =',n:n,d:6};},
+        function(){return{q:'P(sacar un As en mazo de 40) =',n:4,d:40};},
+        function(){var t=rnd(4,10),r=rnd(1,t-1);return{q:'Urna: '+t+' bolas, '+r+' azules. P(azul) =',n:r,d:t};},
+        function(){return{q:'P(sacar par en dado) =',n:3,d:6};},
+        function(){return{q:'P(sacar impar en dado) =',n:3,d:6};},
+        function(){return{q:'P(sacar 6 en dado) =',n:1,d:6};},
+        function(){var t=rnd(5,12),r=rnd(1,t-1);return{q:'Caja: '+t+' fichas, '+r+' rojas. P(roja) =',n:r,d:t};},
+      ];
+      var c=pick(probCases)();
+      var g2=gcd(c.n,c.d);
+      answer=(c.n/g2)+'/'+(c.d/g2); isStr=true;
+      q=c.q;
+      var ws=fracDistract(c.n,c.d,3);
+      opts=([answer].concat(ws)).sort(function(){return Math.random()-.5;}).map(function(v){return{key:v,html:v};});
+    }
+    else if(d<=3){
+      var r=rnd(1,5),t2=rnd(r+2,12);
+      var g2=gcd(r,t2);
+      answer=(r/g2)+'/'+(t2/g2); isStr=true;
+      q='Bolsa: '+t2+' bolitas, '+r+' rojas. P(roja) =';
+      var ws=fracDistract(r,t2,3);
+      opts=([answer].concat(ws)).sort(function(){return Math.random()-.5;}).map(function(v){return{key:v,html:v};});
+    }
     else if(d<=4){
-      var r=rnd(1,5),t=rnd(r+1,12);q='Bolsa: '+t+' bolitas, '+r+' rojas. P(roja) =';
-      var g=gcd(r,t);answer=(r/g)+'/'+(t/g);isStr=true;
-    } else {
-      var a=rnd(1,4),b2=rnd(1,4);
-      q='P(A)='+a+'/10, P(B)='+b2+'/10, independ. P(A y B)=';
-      var g=gcd(a*b2,100);answer=(a*b2/g)+'/'+(100/g);isStr=true;
+      var r=rnd(2,8),t2=rnd(r+2,15);
+      var g2=gcd(r,t2);
+      var pno_g=gcd(t2-r,t2);
+      var cases=[
+        {q:'Urna: '+t2+' bolas, '+r+' rojas. P(NO roja) =', n:t2-r, d:t2},
+        {q:'Urna: '+t2+' bolas, '+r+' rojas. P(roja) =', n:r, d:t2},
+        {q:'P(A)='+r+'/'+t2+'. P(no A) =', n:t2-r, d:t2},
+      ];
+      var c=pick(cases);
+      var cg=gcd(c.n,c.d);
+      answer=(c.n/cg)+'/'+(c.d/cg); isStr=true; q=c.q;
+      var ws=fracDistract(c.n,c.d,3);
+      opts=([answer].concat(ws)).sort(function(){return Math.random()-.5;}).map(function(v){return{key:v,html:v};});
+    }
+    else {
+      // Probabilidad compuesta — resultado también como fracción
+      var a=rnd(1,4),b2=rnd(1,4),base=rnd(8,12);
+      var num=a*b2, den=base*base;
+      var g2=gcd(num,den);
+      answer=(num/g2)+'/'+(den/g2); isStr=true;
+      q='P(A)='+a+'/'+base+', P(B)='+b2+'/'+base+', independ. P(A∩B)=';
+      var ws=fracDistract(num,den,3);
+      opts=([answer].concat(ws)).sort(function(){return Math.random()-.5;}).map(function(v){return{key:v,html:v};});
     }
   }
 
@@ -845,7 +950,7 @@ function makeQ(topic, diff){
         function(){var a=rnd(1,5),b=rnd(1,5);return{q:'lím(x→∞) ('+a+'x+'+b+')/('+b+'x+'+a+') =',a:String(a/b%1===0?a/b:(a/b).toFixed(2))};},
       ];
     } else {
-      // Nivel experto: regla de L'Hôpital, límites notables
+      // Nivel experto: regla de L\'Hôpital, límites notables
       limCases=[
         function(){var r=rnd(-5,5);return{q:'lím(x→'+r+') (x²−'+(r*r)+')/(x−'+r+') =',a:String(2*r)};},
         function(){return{q:'lím(x→0) sen(x)/x =',a:'1'};},
@@ -1146,7 +1251,12 @@ function checkAns(key,btn,q){
   }
   document.getElementById('hud-combo').textContent='◈ ×'+gs.combo;
   document.getElementById('hud-combo').classList.toggle('hot',gs.combo>1);
-  setTimeout(function(){gs.cur++;if(gs.lives<=0||gs.cur>=QPL)showResult();else{gs.qs[gs.cur]=makeQ(currentTopic,Math.min(5,Math.max(1,gs.diff)));renderQ();}},1300);
+  setTimeout(function(){gs.cur++;
+    if(gs.lives<=0||gs.cur>=QPL)showResult();
+    else{
+      gs.qs[gs.cur]=makeQ(currentTopic,Math.min(5,Math.max(1,gs.diff)));renderQ();
+    }
+  },1300);
 }
 function updateLives(){document.getElementById('hud-lives').querySelectorAll('span').forEach(function(s,i){s.style.opacity=i<gs.lives?1:.15;});}
 
@@ -1189,10 +1299,10 @@ function showResult(){
     actions.innerHTML='<button class="btn-cyan" onclick="go(\'s-dash\')">◈ Dashboard</button><button class="btn-sec" onclick="startGame('+sameLv+',false)">Jugar de nuevo</button>';
   } else if(stars===0&&p.badStreak>=2){
     rb.className='rec-box go-down';ri.textContent='💙';rt.textContent='MODO REFUERZO ACTIVADO';rd.textContent='> Funsi SEC recomienda repasar LVL '+prevLv+' con asistencia.';
-    actions.innerHTML='<button class="btn-cyan" onclick="startGame('+prevLv+',true)">💙 REPASAR LVL '+prevLv+'</button><button class="btn-sec" onclick="startGame('+sameLv+',true)">Reintentar con hints</button><button class="btn-sec" onclick="go(\'s-dash\')">Dashboard</button>';
+    actions.innerHTML='<button class="btn-cyan" onclick="showApaFromResult(\''+currentTopic+'\',2)">🌟 Ver otra explicación</button>'+'<button class="btn-sec" onclick="startGame('+prevLv+',true)">💙 REPASAR LVL '+prevLv+'</button>'+'<button class="btn-sec" onclick="go(\'s-dash\')">Dashboard</button>';
   } else if(stars===0){
     rb.className='rec-box go-down';ri.textContent='⚠';rt.textContent='SCORE INSUFICIENTE';rd.textContent='> Necesitás '+Math.ceil(QPL*.33)+'/'+QPL+' para ganar estrellas. ¡Intentá de nuevo!';
-    actions.innerHTML='<button class="btn-cyan" onclick="startGame('+sameLv+',true)">// Reintentar con hints</button><button class="btn-sec" onclick="startGame('+sameLv+',false)">Sin hints</button><button class="btn-sec" onclick="go(\'s-dash\')">Dashboard</button>';
+    actions.innerHTML='<button class="btn-cyan" onclick="showApaFromResult(\''+currentTopic+'\',1)">💡 ¿Cómo se resuelve?</button>'+'<button class="btn-sec" onclick="startGame('+sameLv+',true)">Reintentar con hints</button><button class="btn-sec" onclick="startGame('+sameLv+',false)">Sin hints</button><button class="btn-sec" onclick="go(\'s-dash\')">Dashboard</button>';
   } else {
     rb.className='rec-box stay';ri.textContent='◈';rt.textContent='SEGUÍ MEJORANDO';rd.textContent='> '+gs.correct+'/'+QPL+' correctas. Con '+Math.ceil(QPL*.6)+' o más llegás a 2 estrellas.';
     actions.innerHTML='<button class="btn-yellow" onclick="startGame('+sameLv+',false)">▶ REPETIR LVL '+sameLv+'</button><button class="btn-sec" onclick="startGame('+sameLv+',true)">Con hints</button><button class="btn-sec" onclick="go(\'s-dash\')">Dashboard</button>';
@@ -1351,8 +1461,190 @@ function sndPerfect(){if(!soundEnabled)return;[440,550,660,880,1100].forEach(fun
 function sndTimeout(){if(!soundEnabled)return;tone(330,0,.08,.14,'square');tone(220,.1,.08,.12,'square');tone(165,.2,.2,.12,'square');}
 function sndClick(){if(!soundEnabled)return;tone(800,0,.04,.06,'sine');}
 
-// EDM AGRESIVO — 160 BPM, onda sawtooth distorsionada, bajo profundo, arpegios neón
-var BPM=160, B=60/BPM;
+// ROCK ELECTRÓNICO / SYNTH METAL — 120 BPM, riffs distorsionados, bajo pesado
+var BPM=120, B=60/BPM;
+
+// Riff principal — power chords distorsionados (modo menor)
+var RIFF=[
+  [110,B/4],[110,B/4],[0,B/4],[110,B/4],[117,B/4],[0,B/4],[110,B/4],[0,B/4],
+  [98,B/4],[98,B/4],[0,B/4],[98,B/4],[104,B/4],[0,B/4],[98,B/4],[0,B/4],
+  [110,B/4],[110,B/4],[0,B/4],[110,B/4],[130,B/2],[0,B/4],[123,B/4],
+  [117,B/4],[0,B/4],[110,B/4],[0,B/4],[98,B],[0,B],
+];
+
+// Quinta del riff (power chord) — una quinta justa arriba
+var RIFF5=[
+  [165,B/4],[165,B/4],[0,B/4],[165,B/4],[175,B/4],[0,B/4],[165,B/4],[0,B/4],
+  [147,B/4],[147,B/4],[0,B/4],[147,B/4],[156,B/4],[0,B/4],[147,B/4],[0,B/4],
+  [165,B/4],[165,B/4],[0,B/4],[165,B/4],[196,B/2],[0,B/4],[185,B/4],
+  [175,B/4],[0,B/4],[165,B/4],[0,B/4],[147,B],[0,B],
+];
+
+// Melodía lead — solo de guitarra sintetizada
+var LEAD=[
+  [0,B],[440,B/4],[0,B/4],[494,B/4],[0,B/4],
+  [523,B/2],[494,B/4],[0,B/4],[440,B/2],
+  [0,B/2],[392,B/4],[0,B/4],[440,B/4],[0,B/4],[494,B/4],[0,B/4],
+  [523,B],[0,B],
+  [0,B],[587,B/4],[0,B/4],[523,B/4],[0,B/4],
+  [494,B/2],[440,B/4],[0,B/4],[392,B/2],
+  [0,B/2],[349,B/4],[0,B/4],[392,B/4],[0,B/4],[440,B/4],[0,B/4],
+  [494,B],[0,B],
+];
+
+function scheduleLoop(){
+  if(!musicPlaying||!soundEnabled)return;
+  try{
+    var ctx=getCtx();if(!ctx||!_actxReady){musicPlaying=false;return;}
+    var t=ctx.currentTime+0.05;
+    var loopDur=RIFF.reduce(function(s,n){return s+n[1];},0);
+
+    // RIFF distorsionado — sawtooth con waveshaper
+    function playRiffLayer(notes, vol, detune){
+      var rt=0;
+      notes.forEach(function(n){
+        if(n[0]>0){
+          try{
+            // Capa 1: sawtooth distorsionada
+            var o=ctx.createOscillator(),g=ctx.createGain(),ws=ctx.createWaveShaper(),filt=ctx.createBiquadFilter();
+            var curve=new Float32Array(256);
+            for(var i=0;i<256;i++){var x=i*2/256-1;curve[i]=x<0?-Math.pow(Math.abs(x),.5):Math.pow(x,.5);}
+            ws.curve=curve;
+            filt.type='lowpass'; filt.frequency.value=2800; filt.Q.value=3;
+            o.connect(ws); ws.connect(filt); filt.connect(g); g.connect(ctx.destination);
+            o.type='sawtooth'; o.frequency.value=n[0]; o.detune.value=detune||0;
+            g.gain.setValueAtTime(0.001,t+rt);
+            g.gain.linearRampToValueAtTime(vol,t+rt+0.008);
+            g.gain.setValueAtTime(vol,t+rt+n[1]-0.02);
+            g.gain.exponentialRampToValueAtTime(0.001,t+rt+n[1]);
+            o.start(t+rt); o.stop(t+rt+n[1]+0.02);
+            // Capa 2: square una octava abajo para cuerpo
+            var o2=ctx.createOscillator(),g2=ctx.createGain();
+            o2.connect(g2); g2.connect(ctx.destination);
+            o2.type='square'; o2.frequency.value=n[0]/2;
+            g2.gain.setValueAtTime(0.001,t+rt);
+            g2.gain.linearRampToValueAtTime(vol*.4,t+rt+0.01);
+            g2.gain.exponentialRampToValueAtTime(0.001,t+rt+n[1]*.8);
+            o2.start(t+rt); o2.stop(t+rt+n[1]);
+          }catch(e){}
+        }
+        rt+=n[1];
+      });
+    }
+    playRiffLayer(RIFF, 0.07, 0);
+    playRiffLayer(RIFF5, 0.05, -5); // power chord ligeramente desafinado para groove
+
+    // BAJO — fundamental muy grave con punch
+    var bt=0;
+    RIFF.forEach(function(n){
+      if(n[0]>0){
+        try{
+          var o=ctx.createOscillator(),g=ctx.createGain(),f=ctx.createBiquadFilter();
+          f.type='lowpass'; f.frequency.value=300;
+          o.connect(f); f.connect(g); g.connect(ctx.destination);
+          o.type='sine'; o.frequency.value=n[0]/2; // una octava abajo
+          g.gain.setValueAtTime(0.001,t+bt);
+          g.gain.linearRampToValueAtTime(0.28,t+bt+0.005);
+          g.gain.exponentialRampToValueAtTime(0.001,t+bt+n[1]*.9);
+          o.start(t+bt); o.stop(t+bt+n[1]);
+        }catch(e){}
+      }
+      bt+=n[1];
+    });
+
+    // MELODÍA LEAD — sawtooth brillante con vibrato
+    var mt=0;
+    LEAD.forEach(function(n){
+      if(n[0]>0){
+        try{
+          var o=ctx.createOscillator(),lfo=ctx.createOscillator(),lfoG=ctx.createGain(),g=ctx.createGain(),f=ctx.createBiquadFilter();
+          f.type='bandpass'; f.frequency.value=n[0]*2; f.Q.value=2;
+          lfo.frequency.value=5.5; lfoG.gain.value=8; // vibrato
+          lfo.connect(lfoG); lfoG.connect(o.frequency);
+          o.connect(f); f.connect(g); g.connect(ctx.destination);
+          o.type='sawtooth'; o.frequency.value=n[0];
+          g.gain.setValueAtTime(0.001,t+mt);
+          g.gain.linearRampToValueAtTime(0.055,t+mt+0.02);
+          g.gain.setValueAtTime(0.055,t+mt+n[1]-0.03);
+          g.gain.exponentialRampToValueAtTime(0.001,t+mt+n[1]);
+          lfo.start(t+mt); lfo.stop(t+mt+n[1]);
+          o.start(t+mt); o.stop(t+mt+n[1]);
+        }catch(e){}
+      }
+      mt+=n[1];
+    });
+
+    // BOMBO — doble bombo estilo metal (en cada corchea)
+    var beats=Math.round(loopDur/B);
+    for(var k=0;k<beats;k++){
+      (function(ki){
+        // Bombo en 1 y 3 de cada compás, doble en ciertos beats
+        var isDouble=(ki%4===0||ki%4===1||ki%4===2&&ki%8>=4);
+        if(ki%2===0||isDouble){
+          try{
+            var o=ctx.createOscillator(),g=ctx.createGain();
+            o.type='sine'; var kt=t+ki*B;
+            o.frequency.setValueAtTime(180,kt);
+            o.frequency.exponentialRampToValueAtTime(40,kt+0.1);
+            g.gain.setValueAtTime(0.001,kt);
+            g.gain.linearRampToValueAtTime(0.4,kt+0.004);
+            g.gain.exponentialRampToValueAtTime(0.001,kt+0.15);
+            o.connect(g); g.connect(ctx.destination);
+            o.start(kt); o.stop(kt+0.18);
+          }catch(e){}
+        }
+      })(k);
+    }
+
+    // CAJA — en tiempos 2 y 4
+    for(var s=0;s<beats/2;s++){
+      (function(si){
+        try{
+          var buf=ctx.createBuffer(1,ctx.sampleRate*.12,ctx.sampleRate);
+          var data=buf.getChannelData(0);
+          for(var i=0;i<data.length;i++) data[i]=(Math.random()*2-1)*Math.pow(1-i/data.length,1.2);
+          var src=ctx.createBufferSource(),g=ctx.createGain(),f=ctx.createBiquadFilter();
+          f.type='highpass'; f.frequency.value=1800;
+          src.buffer=buf; src.connect(f); f.connect(g); g.connect(ctx.destination);
+          var st=t+(si*4+1)*B; // tiempos 2 y 4
+          g.gain.setValueAtTime(0.001,st);
+          g.gain.linearRampToValueAtTime(0.18,st+0.002);
+          g.gain.exponentialRampToValueAtTime(0.001,st+0.12);
+          src.start(st); src.stop(st+0.14);
+          // segundo golpe de caja (snare roll sutil)
+          var st2=t+(si*4+3)*B;
+          var src2=ctx.createBufferSource(),g2=ctx.createGain(),f2=ctx.createBiquadFilter();
+          f2.type='highpass'; f2.frequency.value=1800;
+          src2.buffer=buf; src2.connect(f2); f2.connect(g2); g2.connect(ctx.destination);
+          g2.gain.setValueAtTime(0.001,st2);
+          g2.gain.linearRampToValueAtTime(0.14,st2+0.002);
+          g2.gain.exponentialRampToValueAtTime(0.001,st2+0.1);
+          src2.start(st2); src2.stop(st2+0.12);
+        }catch(e){}
+      })(s);
+    }
+
+    // HI-HAT — semicorcheas
+    for(var h=0;h<beats*2;h++){
+      (function(hi){
+        try{
+          var buf=ctx.createBuffer(1,256,ctx.sampleRate),data=buf.getChannelData(0);
+          for(var i=0;i<256;i++) data[i]=Math.random()*2-1;
+          var src=ctx.createBufferSource(),g=ctx.createGain(),f=ctx.createBiquadFilter();
+          f.type='highpass'; f.frequency.value=10000;
+          src.buffer=buf; src.connect(f); f.connect(g); g.connect(ctx.destination);
+          var ht=t+hi*(B/2);
+          g.gain.setValueAtTime(0.001,ht);
+          g.gain.linearRampToValueAtTime(hi%4===0?.05:.02,ht+.003);
+          g.gain.exponentialRampToValueAtTime(0.001,ht+.035);
+          src.start(ht); src.stop(ht+.04);
+        }catch(e){}
+      })(h);
+    }
+
+    musicTimeout=setTimeout(scheduleLoop,(loopDur-.1)*1000);
+  }catch(e){musicPlaying=false;}
+}
 
 // Melodía principal: arpegio agresivo en modo frigio
 var LEAD=[
@@ -1531,6 +1823,845 @@ document.addEventListener('touchend',firstInteraction);
 document.addEventListener('visibilitychange',function(){if(document.visibilityState==='visible'&&_actx)_actx.resume().catch(function(){});});
 
 loadP();
+
+/* ═══════════════════════════════════════
+   APAs — AYUDAS PARA AVANZAR
+   Base de datos por tema con pasos + ejemplo + fórmula
+═══════════════════════════════════════ */
+var APA_DATA = {
+
+  /* ── 1° AÑO ─────────────────────────────────────────────────── */
+
+  numeros_enteros:{
+    title:'Números Enteros',
+    b1:'¡Los números enteros también incluyen negativos! Imaginá un termómetro: arriba del 0 hace calor, abajo hace frío 🌡️',
+    s1:[
+      {n:'1',t:'Los números positivos están arriba del cero: +1, +2, +3...'},
+      {n:'2',t:'Los números negativos están debajo del cero: -1, -2, -3...'},
+      {n:'3',t:'Para sumar dos negativos: sumás los números y ponés signo negativo'},
+      {n:'4',t:'Para restar un negativo: es lo mismo que sumar'},
+    ],
+    e1:[
+      {a:false,t:'Hacía −3°C. Bajó 5° más. ¿Cuánto hace ahora?'},
+      {a:true, t:'−3 + (−5): ambos negativos, sumo los números'},
+      {a:true, t:'3 + 5 = 8, y le pongo el signo negativo'},
+      {a:true, t:'Resultado: −8°C ✅'},
+    ],
+    f1:'(−) + (−) = − (suma y pone negativo)\n(+) − (−) = + (restar negativo es sumar)\n|−5| = 5 (el valor absoluto ignora el signo)',
+    b2:'¡Pensá en plata: tener es positivo, deber es negativo! 💰',
+    s2:[
+      {n:'1',t:'Si tenés $10 y debés $4: +10 + (−4) = +6'},
+      {n:'2',t:'Si debés $3 y te perdonan la deuda: −3 − (−3) = 0'},
+      {n:'3',t:'Positivo × Negativo = Negativo | Negativo × Negativo = Positivo'},
+    ],
+    e2:[
+      {a:false,t:'(−4) × (−3) = ?'},
+      {a:true, t:'Negativo × Negativo = Positivo'},
+      {a:true, t:'4 × 3 = 12'},
+      {a:true, t:'(−4) × (−3) = +12 ✅'},
+    ],
+    f2:'(+) × (+) = + | (−) × (−) = +\n(+) × (−) = − | (−) × (+) = −\nDos signos iguales → resultado positivo',
+  },
+
+  potencias:{
+    title:'Potencias y Raíces',
+    b1:'¡Una potencia es multiplicar un número por sí mismo varias veces! 2³ = 2×2×2 😊',
+    s1:[
+      {n:'1',t:'La base es el número que multiplicás'},
+      {n:'2',t:'El exponente (número chico de arriba) dice cuántas veces multiplicás la base'},
+      {n:'3',t:'La raíz cuadrada es la operación inversa: √9 = 3 porque 3×3 = 9'},
+    ],
+    e1:[
+      {a:false,t:'¿Cuántos cuadraditos tiene un cuadrado de lado 4?'},
+      {a:true, t:'4² = 4 × 4 = 16 cuadraditos'},
+      {a:true, t:'La base (4) es el lado. El exponente (2) es porque tiene 2 dimensiones'},
+      {a:true, t:'4² = 16 ✅'},
+    ],
+    f1:'aⁿ = a × a × a ... (n veces)\na⁰ = 1 | √a² = a\n2³=8 | 3²=9 | 10²=100 | 10³=1000',
+    b2:'¡Potencias de 10 son fáciles: el exponente dice cuántos ceros! 😊',
+    s2:[
+      {n:'1',t:'10¹ = 10 (un cero) | 10² = 100 (dos ceros) | 10³ = 1000 (tres ceros)'},
+      {n:'2',t:'Para multiplicar potencias de igual base: sumás los exponentes'},
+      {n:'3',t:'Ejemplo: 2³ × 2⁴ = 2^(3+4) = 2⁷'},
+    ],
+    e2:[
+      {a:false,t:'3² × 3³ = ?'},
+      {a:true, t:'Misma base (3), sumo los exponentes: 2+3=5'},
+      {a:true, t:'= 3⁵ = 243'},
+      {a:true, t:'Verificación: 9 × 27 = 243 ✅'},
+    ],
+    f2:'aⁿ × aᵐ = a^(n+m)\n10¹=10 | 10²=100 | 10³=1000\n√4=2 | √9=3 | √16=4 | √25=5',
+  },
+
+  proporcionalidad:{
+    title:'Proporcionalidad',
+    b1:'¡Proporcionalidad directa: si uno sube, el otro también sube en la misma proporción! 😊',
+    s1:[
+      {n:'1',t:'Si comprás 2 kg de manzanas y pagás $40, ¿cuánto pagás por 5 kg?'},
+      {n:'2',t:'Armás una tabla: 2 kg → $40, entonces 1 kg → $20'},
+      {n:'3',t:'Multiplicás: 5 kg × $20 = $100'},
+    ],
+    e1:[
+      {a:false,t:'3 obreros construyen un muro en 6 días. ¿6 obreros en cuántos días?'},
+      {a:true, t:'Más obreros → menos días (proporcionalidad INVERSA)'},
+      {a:true, t:'3 × 6 = 6 × ? → 18 = 6 × ?'},
+      {a:true, t:'? = 18 ÷ 6 = 3 días ✅'},
+    ],
+    f1:'Directa: a/b = c/d → a×d = b×c\nInversa: a×b = c×d\nDirecta: más cantidad → más precio\nInversa: más velocidad → menos tiempo',
+    b2:'¡La regla de tres es la herramienta clave! 😊',
+    s2:[
+      {n:'1',t:'Identificá si es DIRECTA (mismo sentido) o INVERSA (sentidos contrarios)'},
+      {n:'2',t:'Directa: multiplicás en cruz'},
+      {n:'3',t:'Inversa: multiplicás del mismo lado'},
+    ],
+    e2:[
+      {a:false,t:'Si 4 pizzas cuestan $800, ¿cuánto cuestan 7 pizzas?'},
+      {a:true, t:'Directa (más pizzas → más plata)'},
+      {a:true, t:'4 pizzas → $800 | 7 pizzas → $?'},
+      {a:true, t:'? = 7 × 800 ÷ 4 = $1400 ✅'},
+    ],
+    f2:'Regla de 3 directa: ? = dato3 × dato2 ÷ dato1\nRegla de 3 inversa: ? = dato1 × dato2 ÷ dato3\nVerificá que el resultado tenga sentido',
+  },
+
+  ecuaciones1:{
+    title:'Ecuaciones de 1° Grado',
+    b1:'¡Una ecuación es como una balanza: lo que hacés de un lado, lo hacés del otro para mantener el equilibrio! ⚖️',
+    s1:[
+      {n:'1',t:'La x es un número desconocido que querés encontrar'},
+      {n:'2',t:'Pasá los números al lado derecho (cambian de signo)'},
+      {n:'3',t:'Dividí ambos lados por el número que acompaña a la x'},
+    ],
+    e1:[
+      {a:false,t:'3x + 5 = 14 → ¿cuánto vale x?'},
+      {a:true, t:'Paso el 5 al otro lado: 3x = 14 − 5 = 9'},
+      {a:true, t:'Divido ambos lados por 3: x = 9 ÷ 3 = 3'},
+      {a:true, t:'Verificación: 3×3 + 5 = 9 + 5 = 14 ✓ ✅'},
+    ],
+    f1:'ax + b = c → ax = c − b → x = (c−b)/a\nVerificá reemplazando x en la ecuación original',
+    b2:'¡Pensá en la x como un número escondido en una caja! 📦',
+    s2:[
+      {n:'1',t:'La ecuación te dice pistas sobre qué hay en la caja'},
+      {n:'2',t:'Vas despejando hasta que la caja quede sola de un lado'},
+      {n:'3',t:'Lo que queda del otro lado es el contenido de la caja'},
+    ],
+    e2:[
+      {a:false,t:'2x − 3 = 7 → ¿qué hay en la caja?'},
+      {a:true, t:'Paso el −3: 2x = 7 + 3 = 10'},
+      {a:true, t:'Divido por 2: x = 10 ÷ 2 = 5'},
+      {a:true, t:'Verificación: 2×5 − 3 = 10 − 3 = 7 ✓ ✅'},
+    ],
+    f2:'Regla de oro: lo que hacés de un lado, lo hacés del otro\n+b pasa como −b | ×a pasa como ÷a\n¡Siempre verificá reemplazando!',
+  },
+
+  estadistica1:{
+    title:'Estadística Básica',
+    b1:'¡La estadística sirve para resumir y entender datos! Imaginá las notas de tu clase 📊',
+    s1:[
+      {n:'1',t:'MEDIA (promedio): sumás todos los valores y dividís por la cantidad de datos'},
+      {n:'2',t:'MEDIANA: ordenás los datos de menor a mayor y tomás el del medio'},
+      {n:'3',t:'MODA: el valor que más se repite en el conjunto de datos'},
+    ],
+    e1:[
+      {a:false,t:'Notas de 5 alumnos: 7, 8, 6, 9, 5'},
+      {a:true, t:'Media: (7+8+6+9+5) ÷ 5 = 35 ÷ 5 = 7'},
+      {a:true, t:'Ordenados: 5, 6, 7, 8, 9 → Mediana: 7 (el del medio)'},
+      {a:true, t:'Moda: no hay (todos aparecen una sola vez) ✅'},
+    ],
+    f1:'Media = suma de datos ÷ cantidad\nMediana = valor central (datos ordenados)\nModa = el que más se repite',
+    b2:'¡Con un ejemplo donde hay moda! 😊',
+    s2:[
+      {n:'1',t:'Si hay cantidad par de datos, la mediana es el promedio de los dos del medio'},
+      {n:'2',t:'Puede haber más de una moda si varios valores se repiten igual cantidad de veces'},
+      {n:'3',t:'La media puede ser un número con decimales aunque los datos sean enteros'},
+    ],
+    e2:[
+      {a:false,t:'Edades de 6 chicos: 12, 14, 12, 15, 13, 12'},
+      {a:true, t:'Media: (12+14+12+15+13+12) ÷ 6 = 78 ÷ 6 = 13'},
+      {a:true, t:'Ordenados: 12, 12, 12, 13, 14, 15 → Mediana: (12+13)÷2 = 12.5'},
+      {a:true, t:'Moda: 12 (aparece 3 veces) ✅'},
+    ],
+    f2:'Media = Σx ÷ n\nMediana par: promedio de los dos centrales\nModa = valor más frecuente',
+  },
+
+  /* ── 2° AÑO ─────────────────────────────────────────────────── */
+
+  polinomios:{
+    title:'Polinomios',
+    b1:'¡Un polinomio es una suma de términos con variables! Como x² + 3x + 2 😊',
+    s1:[
+      {n:'1',t:'Cada término tiene un coeficiente (número) y una variable con su exponente'},
+      {n:'2',t:'Para sumar polinomios: juntás los términos que tienen la misma variable y exponente'},
+      {n:'3',t:'Para multiplicar: distribuís cada término del primero con cada término del segundo'},
+    ],
+    e1:[
+      {a:false,t:'(2x² + 3x + 1) + (x² − x + 4) = ?'},
+      {a:true, t:'Junto los términos semejantes:'},
+      {a:true, t:'x²: 2x² + x² = 3x²'},
+      {a:true, t:'x: 3x − x = 2x'},
+      {a:true, t:'números: 1 + 4 = 5'},
+      {a:true, t:'= 3x² + 2x + 5 ✅'},
+    ],
+    f1:'Solo se suman términos con IGUAL variable e IGUAL exponente\n3x² y 2x² son semejantes | 3x² y 2x NO lo son',
+    b2:'¡Para multiplicar usá la propiedad distributiva! 😊',
+    s2:[
+      {n:'1',t:'Cada término del primer polinomio multiplica a TODOS los del segundo'},
+      {n:'2',t:'Sumás todos los productos resultantes'},
+      {n:'3',t:'Simplificás juntando términos semejantes'},
+    ],
+    e2:[
+      {a:false,t:'(x + 2)(x + 3) = ?'},
+      {a:true, t:'x × x = x²'},
+      {a:true, t:'x × 3 = 3x'},
+      {a:true, t:'2 × x = 2x'},
+      {a:true, t:'2 × 3 = 6'},
+      {a:true, t:'= x² + 5x + 6 ✅'},
+    ],
+    f2:'(a+b)(c+d) = ac + ad + bc + bd\n(x+a)(x+b) = x² + (a+b)x + ab\n(a+b)² = a² + 2ab + b²',
+  },
+
+  ecuaciones2:{
+    title:'Ecuaciones de 2° Grado',
+    b1:'¡Una ecuación cuadrática tiene una x². La fórmula resuelve cualquiera! 😊',
+    s1:[
+      {n:'1',t:'La forma general es ax² + bx + c = 0. Identificás a, b y c'},
+      {n:'2',t:'Calculás el discriminante: Δ = b² − 4ac'},
+      {n:'3',t:'Aplicás la fórmula: x = (−b ± √Δ) ÷ 2a'},
+    ],
+    e1:[
+      {a:false,t:'x² − 5x + 6 = 0 → a=1, b=−5, c=6'},
+      {a:true, t:'Δ = (−5)² − 4×1×6 = 25 − 24 = 1'},
+      {a:true, t:'x = (5 ± √1) ÷ 2 = (5 ± 1) ÷ 2'},
+      {a:true, t:'x₁ = (5+1)÷2 = 3 | x₂ = (5−1)÷2 = 2 ✅'},
+    ],
+    f1:'x = (−b ± √(b²−4ac)) ÷ 2a\nΔ>0: dos soluciones | Δ=0: una | Δ<0: sin solución real\nVerificá: si x=3 → 9−15+6=0 ✓',
+    b2:'¡También podés factorizar si encontrás las raíces! 😊',
+    s2:[
+      {n:'1',t:'Si las raíces son r₁ y r₂, el polinomio es (x−r₁)(x−r₂)'},
+      {n:'2',t:'Suma de raíces = −b/a | Producto de raíces = c/a'},
+      {n:'3',t:'Buscá dos números que sumen −b/a y multipliquen c/a'},
+    ],
+    e2:[
+      {a:false,t:'x² + 5x + 6 = 0 → a=1, b=5, c=6'},
+      {a:true, t:'Suma de raíces = −5 | Producto = 6'},
+      {a:true, t:'¿Qué dos números suman −5 y multiplican 6?'},
+      {a:true, t:'−2 y −3: −2+(−3)=−5 ✓ y (−2)×(−3)=6 ✓'},
+      {a:true, t:'x₁=−2 y x₂=−3 ✅'},
+    ],
+    f2:'Suma de raíces = −b/a\nProducto de raíces = c/a\n(x−r₁)(x−r₂) = x²−(r₁+r₂)x+r₁r₂',
+  },
+
+  geometria_analitica:{
+    title:'Geometría Analítica',
+    b1:'¡La geometría analítica une el álgebra con los gráficos en el plano! 😊',
+    s1:[
+      {n:'1',t:'La pendiente m mide qué tan inclinada está una recta: m = (y₂−y₁)÷(x₂−x₁)'},
+      {n:'2',t:'Una pendiente positiva sube de izquierda a derecha'},
+      {n:'3',t:'La ecuación de la recta es y = mx + b, donde b es donde cruza el eje Y'},
+    ],
+    e1:[
+      {a:false,t:'Recta que pasa por (0,2) y (3,8). ¿Cuál es su ecuación?'},
+      {a:true, t:'Pendiente: m = (8−2)÷(3−0) = 6÷3 = 2'},
+      {a:true, t:'El punto (0,2) me da b=2 directamente'},
+      {a:true, t:'Ecuación: y = 2x + 2 ✅'},
+    ],
+    f1:'Pendiente: m = Δy ÷ Δx\nEcuación: y = mx + b\nb = ordenada al origen (donde cruza el eje Y)',
+    b2:'¡La distancia entre dos puntos usa Pitágoras! 📐',
+    s2:[
+      {n:'1',t:'Imaginá un triángulo rectángulo entre los dos puntos'},
+      {n:'2',t:'Un cateto es la diferencia de las x, el otro es la diferencia de las y'},
+      {n:'3',t:'La hipotenusa (distancia) = √((x₂−x₁)² + (y₂−y₁)²)'},
+    ],
+    e2:[
+      {a:false,t:'Distancia entre (1,2) y (4,6)'},
+      {a:true, t:'Diferencia x: 4−1=3 | Diferencia y: 6−2=4'},
+      {a:true, t:'Triángulo 3-4-? → como 3²+4²=25'},
+      {a:true, t:'Distancia = √25 = 5 ✅'},
+    ],
+    f2:'Distancia = √((x₂−x₁)² + (y₂−y₁)²)\nPunto medio = ((x₁+x₂)/2, (y₁+y₂)/2)\nRectas paralelas tienen igual pendiente',
+  },
+
+  probabilidad:{
+    title:'Probabilidad',
+    b1:'¡La probabilidad mide qué tan posible es que algo ocurra! Si tirás una moneda, ¿qué tan probable es cara? 🪙',
+    s1:[
+      {n:'1',t:'P(A) = casos favorables ÷ casos totales posibles'},
+      {n:'2',t:'El resultado está siempre entre 0 (imposible) y 1 (seguro)'},
+      {n:'3',t:'P(no A) = 1 − P(A)'},
+    ],
+    e1:[
+      {a:false,t:'Bolsa con 3 rojas, 2 azules y 5 verdes. ¿P(roja)?'},
+      {a:true, t:'Favorable: 3 rojas | Total: 3+2+5=10'},
+      {a:true, t:'P(roja) = 3/10'},
+      {a:true, t:'P(no roja) = 1 − 3/10 = 7/10 ✅'},
+    ],
+    f1:'P(A) = favorables ÷ totales\n0 ≤ P(A) ≤ 1\nP(A) + P(no A) = 1',
+    b2:'¡Para eventos independientes se multiplican las probabilidades! 😊',
+    s2:[
+      {n:'1',t:'Dos eventos son independientes si uno no afecta al otro'},
+      {n:'2',t:'P(A y B) = P(A) × P(B)'},
+      {n:'3',t:'Ejemplo: tirar dos dados — el resultado del primero no afecta al segundo'},
+    ],
+    e2:[
+      {a:false,t:'Tirás una moneda y un dado. ¿P(cara y 6)?'},
+      {a:true, t:'P(cara) = 1/2 | P(6) = 1/6'},
+      {a:true, t:'Son independientes → P(cara Y 6) = 1/2 × 1/6'},
+      {a:true, t:'= 1/12 ✅'},
+    ],
+    f2:'P(A y B) = P(A) × P(B) [independientes]\nP(A o B) = P(A) + P(B) − P(A y B)\nP(A y B) = 0 si son mutuamente excluyentes',
+  },
+
+  funciones1:{
+    title:'Funciones Lineales',
+    b1:'¡Una función lineal es una relación entre x e y que dibuja una línea recta! 📈',
+    s1:[
+      {n:'1',t:'La forma es f(x) = mx + b'},
+      {n:'2',t:'m es la pendiente: cuánto sube y cuando x avanza 1'},
+      {n:'3',t:'b es dónde corta el eje Y (cuando x = 0)'},
+    ],
+    e1:[
+      {a:false,t:'Un taxi cobra $50 de bajada más $30 por km'},
+      {a:true, t:'f(km) = 30×km + 50'},
+      {a:true, t:'Para 4 km: f(4) = 30×4 + 50 = 120 + 50 = $170'},
+      {a:true, t:'m=30 (sube $30 por km) | b=50 (bajada de bandera) ✅'},
+    ],
+    f1:'f(x) = mx + b\nm = pendiente (inclinación)\nb = ordenada al origen\nCero: x = −b/m (donde cruza el eje X)',
+    b2:'¡Identificar m y b de la fórmula o de una tabla! 😊',
+    s2:[
+      {n:'1',t:'Si tenés dos puntos (x₁,y₁) y (x₂,y₂): m = (y₂−y₁)÷(x₂−x₁)'},
+      {n:'2',t:'Reemplazás m y un punto en y=mx+b para encontrar b'},
+      {n:'3',t:'El cero de la función es donde y=0: x=−b/m'},
+    ],
+    e2:[
+      {a:false,t:'Función que pasa por (2,7) y (4,11)'},
+      {a:true, t:'m = (11−7)÷(4−2) = 4÷2 = 2'},
+      {a:true, t:'7 = 2×2 + b → b = 7−4 = 3'},
+      {a:true, t:'f(x) = 2x + 3 ✅'},
+    ],
+    f2:'m = Δy ÷ Δx\nm>0: crece | m<0: decrece | m=0: constante\nParalelas: igual m | Perpendiculares: m₁×m₂=−1',
+  },
+
+  /* ── 3° AÑO ─────────────────────────────────────────────────── */
+
+  funciones2:{
+    title:'Funciones Cuadráticas',
+    b1:'¡La función cuadrática dibuja una parábola — como la trayectoria de una pelota! ⚽',
+    s1:[
+      {n:'1',t:'La forma es f(x) = ax² + bx + c'},
+      {n:'2',t:'Si a>0 la parábola abre hacia ARRIBA (como una U)'},
+      {n:'3',t:'Si a<0 abre hacia ABAJO (como una ∩) — como la pelota en el aire'},
+    ],
+    e1:[
+      {a:false,t:'f(x) = x² − 4x + 3. ¿Dónde está el vértice?'},
+      {a:true, t:'Vértice en x = −b/2a = −(−4)/(2×1) = 4/2 = 2'},
+      {a:true, t:'f(2) = 4 − 8 + 3 = −1'},
+      {a:true, t:'Vértice en (2, −1) — punto más bajo de la parábola ✅'},
+    ],
+    f1:'f(x) = ax²+bx+c\nVértice: x = −b/2a\na>0: abre ↑ (mínimo) | a<0: abre ↓ (máximo)',
+    b2:'¡Las raíces son donde la parábola toca el eje X! 😊',
+    s2:[
+      {n:'1',t:'Las raíces son los valores de x donde f(x)=0'},
+      {n:'2',t:'Se calculan con la fórmula cuadrática o factorizando'},
+      {n:'3',t:'El discriminante Δ=b²−4ac dice cuántas raíces hay'},
+    ],
+    e2:[
+      {a:false,t:'f(x) = x² − 4x + 3. ¿Cuáles son las raíces?'},
+      {a:true, t:'x² − 4x + 3 = 0 → busco dos números que sumen 4 y multipliquen 3'},
+      {a:true, t:'1 y 3: 1+3=4 ✓ y 1×3=3 ✓'},
+      {a:true, t:'x₁=1 y x₂=3 → la parábola cruza en x=1 y x=3 ✅'},
+    ],
+    f2:'Raíces: donde f(x)=0\nΔ=b²−4ac: >0 dos raíces | =0 una | <0 ninguna\nLa parábola es simétrica respecto al vértice',
+  },
+
+  trigonometria:{
+    title:'Trigonometría',
+    b1:'¡La trigonometría relaciona ángulos con lados en triángulos rectángulos! Memorizá SOHCAHTOA 😊',
+    s1:[
+      {n:'1',t:'SOH: Seno = lado Opuesto ÷ Hipotenusa'},
+      {n:'2',t:'CAH: Coseno = lado Adyacente ÷ Hipotenusa'},
+      {n:'3',t:'TOA: Tangente = lado Opuesto ÷ lado Adyacente'},
+    ],
+    e1:[
+      {a:false,t:'Triángulo rectángulo: opuesto=3, adyacente=4, hipotenusa=5'},
+      {a:true, t:'sen(θ) = 3/5 = 0.6'},
+      {a:true, t:'cos(θ) = 4/5 = 0.8'},
+      {a:true, t:'tan(θ) = 3/4 = 0.75 ✅'},
+    ],
+    f1:'sen²θ + cos²θ = 1 (siempre!)\ntan θ = sen θ ÷ cos θ\nSOHCAHTOA',
+    b2:'¡Los ángulos especiales hay que memorizar! Son los más usados 😊',
+    s2:[
+      {n:'1',t:'sen(30°)=1/2 | cos(30°)=√3/2 | tan(30°)=√3/3'},
+      {n:'2',t:'sen(45°)=√2/2 | cos(45°)=√2/2 | tan(45°)=1'},
+      {n:'3',t:'sen(60°)=√3/2 | cos(60°)=1/2 | tan(60°)=√3'},
+    ],
+    e2:[
+      {a:false,t:'En un triángulo rectángulo, un ángulo es 30° y la hipotenusa 10. ¿Cuánto mide el lado opuesto?'},
+      {a:true, t:'sen(30°) = opuesto ÷ hipotenusa'},
+      {a:true, t:'1/2 = opuesto ÷ 10'},
+      {a:true, t:'opuesto = 10 × 1/2 = 5 ✅'},
+    ],
+    f2:'sen(30°)=0.5 | cos(60°)=0.5 | tan(45°)=1\nsen²θ+cos²θ=1\nSi conocés un ángulo y un lado, podés hallar los demás',
+  },
+
+  sistemas_ec:{
+    title:'Sistemas de Ecuaciones',
+    b1:'¡Un sistema es un par de ecuaciones con dos incógnitas que se cumplen al mismo tiempo! 😊',
+    s1:[
+      {n:'1',t:'Método de sustitución: despejás una variable en una ecuación y la reemplazás en la otra'},
+      {n:'2',t:'Método de eliminación: sumás o restás las ecuaciones para cancelar una variable'},
+      {n:'3',t:'Siempre verificá la solución en AMBAS ecuaciones'},
+    ],
+    e1:[
+      {a:false,t:'x + y = 5 y 2x − y = 1'},
+      {a:true, t:'Suma ambas ecuaciones: (x+y) + (2x−y) = 5+1'},
+      {a:true, t:'3x = 6 → x = 2'},
+      {a:true, t:'Reemplazás: 2 + y = 5 → y = 3 ✅'},
+    ],
+    f1:'Sustitución: despejá una variable y reemplazá\nEliminación: sumá/restá ecuaciones para cancelar\nVerificá en AMBAS ecuaciones',
+    b2:'¡Un sistema tiene solución gráfica también! Son los puntos donde se cruzan las rectas 😊',
+    s2:[
+      {n:'1',t:'Cada ecuación es una recta en el plano'},
+      {n:'2',t:'La solución es el punto donde las dos rectas se cruzan'},
+      {n:'3',t:'Si las rectas son paralelas no hay solución (sistema incompatible)'},
+    ],
+    e2:[
+      {a:false,t:'3x + 2y = 12 y x − y = 1'},
+      {a:true, t:'De la segunda: x = y + 1'},
+      {a:true, t:'Reemplazás en la primera: 3(y+1) + 2y = 12'},
+      {a:true, t:'3y+3+2y=12 → 5y=9 → y=1.8 → x=2.8 ✅'},
+    ],
+    f2:'Sistema compatible: una solución (rectas se cruzan)\nIncompatible: sin solución (rectas paralelas)\nIndeterminado: infinitas soluciones (misma recta)',
+  },
+
+  numeros_reales:{
+    title:'Números Reales',
+    b1:'¡Los números reales son todos los que existen en la recta: enteros, fracciones e irracionales! 😊',
+    s1:[
+      {n:'1',t:'Racionales: se pueden escribir como fracción → 1/3, 0.25, 7'},
+      {n:'2',t:'Irracionales: no se pueden escribir como fracción → √2, π, √3'},
+      {n:'3',t:'La raíz de un número que no es cuadrado perfecto siempre es irracional'},
+    ],
+    e1:[
+      {a:false,t:'¿Es racional o irracional √2?'},
+      {a:true, t:'√2 = 1.41421356... (infinitos decimales sin patrón)'},
+      {a:true, t:'No se puede escribir como fracción exacta'},
+      {a:true, t:'→ Es IRRACIONAL ✅'},
+    ],
+    f1:'ℕ ⊂ ℤ ⊂ ℚ ⊂ ℝ\nRacional: termina o se repite (0.333... = 1/3)\nIrracional: infinitos decimales sin patrón',
+    b2:'¡Los cuadrados perfectos sí tienen raíz racional! 😊',
+    s2:[
+      {n:'1',t:'√1=1, √4=2, √9=3, √16=4, √25=5, √36=6...'},
+      {n:'2',t:'Si el número no está en esa lista, su raíz es irracional'},
+      {n:'3',t:'π = 3.14159... es irracional (no tiene patrón que se repita)'},
+    ],
+    e2:[
+      {a:false,t:'¿√49 es racional o irracional?'},
+      {a:true, t:'49 = 7 × 7 → 49 es cuadrado perfecto'},
+      {a:true, t:'√49 = 7 (exacto, sin decimales)'},
+      {a:true, t:'→ Es RACIONAL ✅'},
+    ],
+    f2:'Cuadrados perfectos: 1,4,9,16,25,36,49,64,81,100\nSu raíz es siempre racional\nLos demás: raíz irracional',
+  },
+
+  estadistica2:{
+    title:'Estadística Avanzada',
+    b1:'¡La varianza y el desvío estándar miden qué tan dispersos están los datos! 📊',
+    s1:[
+      {n:'1',t:'Primero calculás la media (promedio)'},
+      {n:'2',t:'Para cada dato, calculás cuánto se aleja de la media (diferencia al cuadrado)'},
+      {n:'3',t:'La varianza es el promedio de esas diferencias al cuadrado'},
+    ],
+    e1:[
+      {a:false,t:'Datos: 2, 4, 4, 6. ¿Cuál es la varianza?'},
+      {a:true, t:'Media: (2+4+4+6)÷4 = 16÷4 = 4'},
+      {a:true, t:'Diferencias²: (2−4)²=4 | (4−4)²=0 | (4−4)²=0 | (6−4)²=4'},
+      {a:true, t:'Varianza: (4+0+0+4)÷4 = 2 ✅'},
+    ],
+    f1:'Media = Σx ÷ n\nVarianza = Σ(xᵢ−x̄)² ÷ n\nDesvío estándar = √varianza',
+    b2:'¡El desvío estándar dice cuánto se alejan los datos de la media! 😊',
+    s2:[
+      {n:'1',t:'Desvío pequeño: los datos están muy juntos (poca dispersión)'},
+      {n:'2',t:'Desvío grande: los datos están muy separados (mucha dispersión)'},
+      {n:'3',t:'El desvío tiene las mismas unidades que los datos originales'},
+    ],
+    e2:[
+      {a:false,t:'Con la varianza=2 del ejemplo anterior:'},
+      {a:true, t:'Desvío estándar = √2 ≈ 1.41'},
+      {a:true, t:'Esto significa que los datos se alejan ≈1.41 de la media'},
+      {a:true, t:'Media=4, rango típico: entre 2.59 y 5.41 ✅'},
+    ],
+    f2:'Desvío = √varianza\nPoco desvío: datos concentrados\nMucho desvío: datos dispersos\nSiempre: desvío ≥ 0',
+  },
+
+  /* ── 4° AÑO ─────────────────────────────────────────────────── */
+
+  funciones3:{
+    title:'Funciones Avanzadas',
+    b1:'¡La composición de funciones es aplicar una función al resultado de otra! Como pasar por dos filtros 😊',
+    s1:[
+      {n:'1',t:'(f∘g)(x) = f(g(x)): primero aplicás g, después f al resultado'},
+      {n:'2',t:'La función inversa f⁻¹ "deshace" lo que hace f'},
+      {n:'3',t:'Para hallar la inversa: cambiás x e y, y despejás y'},
+    ],
+    e1:[
+      {a:false,t:'f(x)=2x+1 y g(x)=x². ¿(f∘g)(3)?'},
+      {a:true, t:'Primero g(3) = 3² = 9'},
+      {a:true, t:'Después f(9) = 2×9+1 = 19'},
+      {a:true, t:'(f∘g)(3) = 19 ✅'},
+    ],
+    f1:'(f∘g)(x) = f(g(x))\nInversa: cambiás x e y, despejás y\nf(f⁻¹(x)) = x siempre',
+    b2:'¡La función inversa revierte el proceso! 😊',
+    s2:[
+      {n:'1',t:'Si f convierte °C en °F, la inversa convierte °F en °C'},
+      {n:'2',t:'Para encontrar f⁻¹: escribís y=f(x), intercambiás x e y, despejás y'},
+      {n:'3',t:'No todas las funciones tienen inversa (solo las inyectivas)'},
+    ],
+    e2:[
+      {a:false,t:'f(x) = 3x − 2. ¿Cuál es f⁻¹(x)?'},
+      {a:true, t:'Escribo y = 3x − 2'},
+      {a:true, t:'Intercambio: x = 3y − 2'},
+      {a:true, t:'Despejo y: 3y = x+2 → y = (x+2)/3'},
+      {a:true, t:'f⁻¹(x) = (x+2)/3 ✅'},
+    ],
+    f2:'f⁻¹: intercambiá x e y y despejá\nVerificación: f(f⁻¹(x)) = x\nSolo funciones inyectivas tienen inversa',
+  },
+
+  logaritmos:{
+    title:'Logaritmos',
+    b1:'¡El logaritmo es la pregunta: "¿A qué exponente elevo la base para obtener ese número?" 😊',
+    s1:[
+      {n:'1',t:'log₂(8) = 3 porque 2³ = 8'},
+      {n:'2',t:'log₁₀(1000) = 3 porque 10³ = 1000'},
+      {n:'3',t:'El log₁₀ se llama logaritmo decimal o simplemente "log"'},
+    ],
+    e1:[
+      {a:false,t:'¿Cuánto es log₂(32)?'},
+      {a:true, t:'Pregunto: ¿a qué potencia elevo 2 para obtener 32?'},
+      {a:true, t:'2¹=2, 2²=4, 2³=8, 2⁴=16, 2⁵=32'},
+      {a:true, t:'log₂(32) = 5 ✅'},
+    ],
+    f1:'logₐ(x)=y ↔ aʸ=x\nlog(a·b)=log a + log b\nlog(aⁿ)=n·log a | ln(e)=1',
+    b2:'¡Las propiedades de los logaritmos simplifican cálculos! 😊',
+    s2:[
+      {n:'1',t:'log(a×b) = log a + log b (el log de un producto = suma de logs)'},
+      {n:'2',t:'log(a/b) = log a − log b'},
+      {n:'3',t:'log(aⁿ) = n × log a (el exponente baja como factor)'},
+    ],
+    e2:[
+      {a:false,t:'Simplificá: log(100) + log(10)'},
+      {a:true, t:'log(100) = log(10²) = 2'},
+      {a:true, t:'log(10) = 1'},
+      {a:true, t:'2 + 1 = 3 ✅'},
+      {a:false,t:'También: log(100×10) = log(1000) = 3 ✓'},
+    ],
+    f2:'log(a·b)=log a+log b\nlog(a/b)=log a−log b\nlog(aⁿ)=n·log a | log(1)=0 | log(a)=1',
+  },
+
+  geometria3d:{
+    title:'Geometría 3D',
+    b1:'¡Los cuerpos geométricos tienen 3 dimensiones: largo, ancho y alto! 📦',
+    s1:[
+      {n:'1',t:'CUBO: todas las caras son cuadrados iguales. V=a³ | Superficie=6a²'},
+      {n:'2',t:'CILINDRO: como una lata. V=πr²h | Superficie lateral=2πrh'},
+      {n:'3',t:'ESFERA: como una pelota. V=4πr³/3 | Superficie=4πr²'},
+    ],
+    e1:[
+      {a:false,t:'Una caja cúbica de lado 4 cm. ¿Cuál es su volumen?'},
+      {a:true, t:'V = a³ = 4³ = 4 × 4 × 4'},
+      {a:true, t:'= 16 × 4 = 64 cm³'},
+      {a:true, t:'¡Caben 64 cubitos de 1cm³! ✅'},
+    ],
+    f1:'Cubo: V=a³ | S=6a²\nCilindro: V=πr²h | Sl=2πrh\nEsfera: V=4πr³/3 | S=4πr²\nCono: V=πr²h/3',
+    b2:'¡El volumen indica cuánto "cabe" adentro! 😊',
+    s2:[
+      {n:'1',t:'PIRÁMIDE: base×altura÷3. V = (Área base × h) ÷ 3'},
+      {n:'2',t:'CONO: como una pirámide circular. V = πr²h ÷ 3'},
+      {n:'3',t:'Siempre chequeá las unidades: cm³ para volumen, cm² para superficie'},
+    ],
+    e2:[
+      {a:false,t:'Cilindro con r=3 cm y h=5 cm. ¿Cuál es su volumen?'},
+      {a:true, t:'V = π × r² × h'},
+      {a:true, t:'V = π × 9 × 5 = 45π'},
+      {a:true, t:'V ≈ 141.4 cm³ ✅'},
+    ],
+    f2:'Volumen = cuánto cabe adentro (cm³)\nSuperficie = cuánto mide "la piel" (cm²)\nPirámide/Cono: volumen = base×altura÷3',
+  },
+
+  combinatoria:{
+    title:'Combinatoria',
+    b1:'¡La combinatoria cuenta de cuántas formas se pueden ordenar o elegir elementos! 😊',
+    s1:[
+      {n:'1',t:'FACTORIAL: n! = 1×2×3×...×n. Ejemplo: 4! = 24'},
+      {n:'2',t:'PERMUTACIÓN: importa el ORDEN. ¿De cuántas formas ordenás k elementos de n?'},
+      {n:'3',t:'COMBINACIÓN: NO importa el orden. ¿De cuántas formas elegís k de n?'},
+    ],
+    e1:[
+      {a:false,t:'¿De cuántas formas pueden sentarse 4 personas en 4 sillas?'},
+      {a:true, t:'Importa el orden → es una permutación'},
+      {a:true, t:'P(4,4) = 4! = 4×3×2×1 = 24 formas'},
+      {a:true, t:'✅'},
+    ],
+    f1:'n! = 1×2×3×...×n\nP(n,k) = n!/(n−k)! [con orden]\nC(n,k) = n!/(k!(n−k)!) [sin orden]',
+    b2:'¡La diferencia clave: ¿importa o no el orden? 😊',
+    s2:[
+      {n:'1',t:'PERMUTACIÓN: elegir capitán y vice de 5 personas — el orden importa (capitán ≠ vice)'},
+      {n:'2',t:'COMBINACIÓN: elegir 2 personas de 5 para un equipo — el orden no importa'},
+      {n:'3',t:'C(5,2) = 10 equipos posibles | P(5,2) = 20 pares ordenados'},
+    ],
+    e2:[
+      {a:false,t:'¿De cuántas formas elegís 3 de 6 ingredientes para una pizza?'},
+      {a:true, t:'No importa el orden (pizza con A,B,C = pizza con C,B,A)'},
+      {a:true, t:'C(6,3) = 6! ÷ (3! × 3!) = 720 ÷ (6×6) = 720÷36 = 20'},
+      {a:true, t:'Hay 20 combinaciones posibles ✅'},
+    ],
+    f2:'¿Importa el orden? → Permutación P(n,k)\n¿No importa? → Combinación C(n,k)\nC(n,k) = C(n,n−k) [simetría]',
+  },
+
+  matrices:{
+    title:'Matrices',
+    b1:'¡Una matriz es una tabla de números organizada en filas y columnas! 😊',
+    s1:[
+      {n:'1',t:'Se suma elemento a elemento (solo matrices del MISMO tamaño)'},
+      {n:'2',t:'Para multiplicar A×B: cada elemento es fila de A · columna de B'},
+      {n:'3',t:'El determinante de una matriz 2×2: det = ad − bc'},
+    ],
+    e1:[
+      {a:false,t:'det [3  2]  = ?'},
+      {a:false,t:'    [1  4]'},
+      {a:true, t:'det = 3×4 − 2×1'},
+      {a:true, t:'= 12 − 2 = 10 ✅'},
+    ],
+    f1:'det [a b] = ad − bc\n    [c d]\nA+B: sumá elemento a elemento\nA×B: fila × columna',
+    b2:'¡La multiplicación de matrices tiene un patrón! 😊',
+    s2:[
+      {n:'1',t:'El elemento (i,j) de A×B = fila i de A multiplicada por columna j de B'},
+      {n:'2',t:'Para que A×B exista: columnas de A = filas de B'},
+      {n:'3',t:'A×B ≠ B×A (la multiplicación no es conmutativa)'},
+    ],
+    e2:[
+      {a:false,t:'[1 2] × [5] = ?'},
+      {a:false,t:'[3 4]   [6]'},
+      {a:true, t:'Fila 1 × columna: 1×5 + 2×6 = 5+12 = 17'},
+      {a:true, t:'Fila 2 × columna: 3×5 + 4×6 = 15+24 = 39'},
+      {a:true, t:'Resultado: [17]  ✅'},
+      {a:false,t:'         [39]'},
+    ],
+    f2:'Tamaño: A(m×n) × B(n×p) = C(m×p)\nNo es conmutativa: A×B ≠ B×A\nMatriz identidad I: A×I = A',
+  },
+
+  /* ── 5° AÑO ─────────────────────────────────────────────────── */
+
+  limites:{
+    title:'Límites',
+    b1:'¡Un límite describe hacia qué valor se acerca una función cuando x se acerca a cierto número! 😊',
+    s1:[
+      {n:'1',t:'Primero intentá SUSTITUIR directamente x = a en la función'},
+      {n:'2',t:'Si da 0/0 (indeterminado): factorizá o simplificá la expresión'},
+      {n:'3',t:'Si x → ∞: dividí todo por el término con el mayor exponente'},
+    ],
+    e1:[
+      {a:false,t:'lím(x→3) (x²−9)/(x−3)'},
+      {a:true, t:'Sustitución directa: (9−9)/(3−3) = 0/0 → indeterminado'},
+      {a:true, t:'Factorizo: x²−9 = (x+3)(x−3)'},
+      {a:true, t:'Simplifico: (x+3)(x−3)/(x−3) = x+3'},
+      {a:true, t:'lím(x→3) (x+3) = 6 ✅'},
+    ],
+    f1:'lím(x→a) f(x): sustituís x=a\nSi 0/0: factorizá y simplificá\nlím(x→∞) 1/x = 0\nlím(x→0) sen(x)/x = 1',
+    b2:'¡Los límites en el infinito miran cuál término "domina"! 😊',
+    s2:[
+      {n:'1',t:'Cuando x→∞, el término de mayor grado domina'},
+      {n:'2',t:'Dividís todo por xⁿ (el mayor exponente del denominador)'},
+      {n:'3',t:'Los términos con x en el denominador tienden a 0'},
+    ],
+    e2:[
+      {a:false,t:'lím(x→∞) (3x²+2) / (x²−1)'},
+      {a:true, t:'Divido todo por x²:'},
+      {a:true, t:'(3 + 2/x²) / (1 − 1/x²)'},
+      {a:true, t:'Cuando x→∞: 2/x²→0 y 1/x²→0'},
+      {a:true, t:'= (3+0)/(1−0) = 3 ✅'},
+    ],
+    f2:'lím(x→∞): dividí por xⁿ mayor\nlím(x→0) sen(x)/x = 1\nlím(x→0) (eˣ−1)/x = 1\nL\'Hôpital: si 0/0 o ∞/∞, derivás arriba y abajo',
+  },
+
+  derivadas:{
+    title:'Derivadas',
+    b1:'¡La derivada mide qué tan rápido cambia una función — es la velocidad instantánea del cambio! 😊',
+    s1:[
+      {n:'1',t:'Regla de la potencia: (xⁿ)′ = n × xⁿ⁻¹'},
+      {n:'2',t:'Suma/resta: (f+g)′ = f′ + g′'},
+      {n:'3',t:'Constante: (c)′ = 0 (las constantes no cambian)'},
+    ],
+    e1:[
+      {a:false,t:'f(x) = 3x⁴ + 2x² − 5. ¿Cuál es f′(x)?'},
+      {a:true, t:'Derivada de 3x⁴: 4×3x³ = 12x³'},
+      {a:true, t:'Derivada de 2x²: 2×2x = 4x'},
+      {a:true, t:'Derivada de −5: 0'},
+      {a:true, t:'f′(x) = 12x³ + 4x ✅'},
+    ],
+    f1:'(xⁿ)′ = nxⁿ⁻¹ | (c)′ = 0\n(eˣ)′ = eˣ | (ln x)′ = 1/x\n(sen x)′ = cos x | (cos x)′ = −sen x',
+    b2:'¡La derivada dice si la función sube o baja en cada punto! 😊',
+    s2:[
+      {n:'1',t:'Si f′(x) > 0: la función está CRECIENDO en ese punto'},
+      {n:'2',t:'Si f′(x) < 0: la función está DECRECIENDO'},
+      {n:'3',t:'Si f′(x) = 0: es un máximo, mínimo o punto de inflexión'},
+    ],
+    e2:[
+      {a:false,t:'f(x) = x² − 4x + 3. ¿Dónde tiene su mínimo?'},
+      {a:true, t:'f′(x) = 2x − 4'},
+      {a:true, t:'El mínimo es donde f′(x)=0: 2x−4=0 → x=2'},
+      {a:true, t:'f(2) = 4−8+3 = −1 → mínimo en (2,−1) ✅'},
+    ],
+    f2:'f′>0: función crece | f′<0: decrece\nf′=0: máximo o mínimo\nRegla del producto: (f·g)′=f′g+fg′\nRegla de la cadena: (f(g(x)))′=f′(g(x))·g′(x)',
+  },
+
+  integrales:{
+    title:'Integrales',
+    b1:'¡La integral es la operación inversa de la derivada — y también calcula el área bajo una curva! 😊',
+    s1:[
+      {n:'1',t:'Regla de la potencia: ∫xⁿdx = xⁿ⁺¹/(n+1) + C'},
+      {n:'2',t:'Siempre agregás +C (constante de integración) en las indefinidas'},
+      {n:'3',t:'La integral definida ∫[a,b] calcula el área entre la función y el eje X'},
+    ],
+    e1:[
+      {a:false,t:'∫(3x² + 2x) dx = ?'},
+      {a:true, t:'∫3x² dx = 3×x³/3 = x³'},
+      {a:true, t:'∫2x dx = 2×x²/2 = x²'},
+      {a:true, t:'= x³ + x² + C ✅'},
+    ],
+    f1:'∫xⁿdx = xⁿ⁺¹/(n+1) + C\n∫eˣdx = eˣ+C | ∫(1/x)dx = ln|x|+C\n∫cos(x)dx = sen(x)+C | ∫sen(x)dx = −cos(x)+C',
+    b2:'¡La integral definida calcula el área bajo la curva! 😊',
+    s2:[
+      {n:'1',t:'Calculás la antiderivada F(x)'},
+      {n:'2',t:'Evaluás F(b) − F(a) (límite superior menos inferior)'},
+      {n:'3',t:'Si la función está debajo del eje X, el área es negativa'},
+    ],
+    e2:[
+      {a:false,t:'∫[0→3] x² dx = ?'},
+      {a:true, t:'Antiderivada: F(x) = x³/3'},
+      {a:true, t:'F(3) = 27/3 = 9'},
+      {a:true, t:'F(0) = 0'},
+      {a:true, t:'Área = F(3)−F(0) = 9−0 = 9 ✅'},
+    ],
+    f2:'∫[a,b]f(x)dx = F(b)−F(a)\nÁrea positiva: función sobre el eje X\nÁrea negativa: función bajo el eje X\nTeorama fundamental: integral inversa a derivada',
+  },
+
+  vectores:{
+    title:'Vectores',
+    b1:'¡Un vector tiene dirección y magnitud — como indicar "3 km al norte"! 🧭',
+    s1:[
+      {n:'1',t:'Un vector v=(x,y) tiene componente horizontal x y vertical y'},
+      {n:'2',t:'El módulo (longitud) es |v| = √(x²+y²) — como Pitágoras'},
+      {n:'3',t:'Para sumar vectores: sumás las componentes por separado'},
+    ],
+    e1:[
+      {a:false,t:'v=(3,4). ¿Cuál es su módulo?'},
+      {a:true, t:'|v| = √(3²+4²) = √(9+16) = √25 = 5'},
+      {a:true, t:'¡Es el triángulo 3-4-5 de Pitágoras!'},
+      {a:true, t:'|v| = 5 ✅'},
+    ],
+    f1:'|v| = √(x²+y²)\nu+v = (u₁+v₁, u₂+v₂)\nu·v = u₁v₁+u₂v₂ (producto escalar)',
+    b2:'¡El producto escalar dice cuánto apuntan en la misma dirección! 😊',
+    s2:[
+      {n:'1',t:'u·v = |u||v|cos(θ) donde θ es el ángulo entre ellos'},
+      {n:'2',t:'Si u·v = 0: los vectores son perpendiculares (ángulo 90°)'},
+      {n:'3',t:'Si u·v > 0: apuntan en dirección similar | Si < 0: en direcciones opuestas'},
+    ],
+    e2:[
+      {a:false,t:'u=(1,2) y v=(−2,1). ¿Son perpendiculares?'},
+      {a:true, t:'u·v = 1×(−2) + 2×1 = −2+2 = 0'},
+      {a:true, t:'Como u·v = 0 → son perpendiculares'},
+      {a:true, t:'✅'},
+    ],
+    f2:'u·v = u₁v₁+u₂v₂\nu⊥v ↔ u·v=0\n|u·v| = |u||v||cos θ|\nProyección de u sobre v = (u·v)/|v|',
+  },
+
+  complejos:{
+    title:'Números Complejos',
+    b1:'¡Los números complejos extienden los reales con la unidad imaginaria i, donde i²=−1! 😊',
+    s1:[
+      {n:'1',t:'Todo número complejo es z = a + bi (parte real + parte imaginaria)'},
+      {n:'2',t:'Para sumar: sumás real con real e imaginario con imaginario'},
+      {n:'3',t:'Para multiplicar: usás distributiva, recordando que i²=−1'},
+    ],
+    e1:[
+      {a:false,t:'(2+3i) × (1−2i) = ?'},
+      {a:true, t:'= 2×1 + 2×(−2i) + 3i×1 + 3i×(−2i)'},
+      {a:true, t:'= 2 − 4i + 3i − 6i²'},
+      {a:true, t:'Como i²=−1: = 2 − i − 6×(−1) = 2 − i + 6 = 8 − i ✅'},
+    ],
+    f1:'i²=−1 | i³=−i | i⁴=1\nz=a+bi | z̄=a−bi (conjugado)\n|z|=√(a²+b²) (módulo)',
+    b2:'¡El módulo es la distancia al origen en el plano complejo! 😊',
+    s2:[
+      {n:'1',t:'Cada número complejo es un punto en el plano: x=parte real, y=parte imaginaria'},
+      {n:'2',t:'El módulo |z| = √(a²+b²) es la distancia del punto al origen'},
+      {n:'3',t:'z × z̄ = a² + b² = |z|² (muy útil para dividir)'},
+    ],
+    e2:[
+      {a:false,t:'¿Cuánto es |3+4i|?'},
+      {a:true, t:'a=3, b=4'},
+      {a:true, t:'|z| = √(3²+4²) = √(9+16) = √25 = 5'},
+      {a:true, t:'¡El módulo de 3+4i es 5! ✅'},
+    ],
+    f2:'z=a+bi | Conjugado: z̄=a−bi\n|z|=√(a²+b²)\nz·z̄=|z|²=a²+b²\nDivisión: multiplicar por conjugado del denominador',
+  },
+
+};
+function showApa(topic,strategy){
+  var d=APA_DATA[topic];if(!d)return;sndClick();
+  var bubble=strategy===1?d.b1:d.b2;
+  var steps=strategy===1?d.s1:d.s2;
+  var example=strategy===1?d.e1:d.e2;
+  var formula=strategy===1?d.f1:d.f2;
+  document.getElementById('apa-bubble').textContent=bubble;
+  document.getElementById('apa-title').textContent=(strategy===1?'◈ ':'🌟 Otra perspectiva: ')+d.title;
+  var stEl=document.getElementById('apa-steps');stEl.innerHTML='';
+  steps.forEach(function(s){stEl.innerHTML+='<div class="apa-step"><span class="apa-step-num">'+s.n+'.</span><span class="apa-step-text">'+s.t+'</span></div>';});
+  var exEl=document.getElementById('apa-ex-body');exEl.innerHTML='';
+  example.forEach(function(l){exEl.innerHTML+='<div class="apa-ex-line">'+(l.a?'<span class="apa-arrow">→</span>':'<span class="apa-bullet">▶</span>')+'<span>'+l.t+'</span></div>';});
+  document.getElementById('apa-formula-text').innerHTML=formula.replace(/\n/g,'<br>');
+  document.getElementById('apa-overlay').style.display='flex';
+}
+function showApaFromResult(topic,strategy){showApa(topic,strategy);}
+
+function closeApa(e){
+  if(e && e.target !== document.getElementById('apa-overlay')) return;
+  document.getElementById('apa-overlay').style.display = 'none';
+}
+
 </script>
+<!-- APA PANEL -->
+<div id="apa-overlay" style="display:none;" class="apa-overlay" onclick="if(event.target===this)closeApa()">
+  <div class="apa-panel" onclick="event.stopPropagation()">
+    <div class="apa-handle"></div>
+    <div class="apa-header">
+      <svg class="apa-funsi-svg" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
+        <rect x="30" y="55" width="60" height="50" rx="6" fill="#0e0e22" stroke="#00f5ff" stroke-width="1.5"/>
+        <rect x="28" y="12" width="64" height="46" rx="10" fill="#0e0e22" stroke="#00f5ff" stroke-width="1.5"/>
+        <line x1="60" y1="12" x2="60" y2="3" stroke="#00f5ff" stroke-width="1.5"/>
+        <circle cx="60" cy="2" r="2.5" fill="#c77dff"/>
+        <rect x="36" y="22" width="18" height="14" rx="3" fill="#060612" stroke="#c77dff" stroke-width="1"/>
+        <rect x="66" y="22" width="18" height="14" rx="3" fill="#060612" stroke="#c77dff" stroke-width="1"/>
+        <rect x="38" y="24" width="14" height="3" rx="1" fill="#c77dff" opacity=".9"/>
+        <rect x="68" y="24" width="14" height="3" rx="1" fill="#c77dff" opacity=".9"/>
+        <rect x="38" y="42" width="44" height="10" rx="3" fill="#060612" stroke="#c77dff" stroke-width="1"/>
+        <text x="40" y="51" font-size="8" fill="#c77dff" font-weight="700" font-family="monospace">APA_</text>
+        <circle cx="60" cy="90" r="3" fill="#c77dff" opacity=".5"/>
+      </svg>
+      <div class="apa-bubble" id="apa-bubble">> Ayuda activada. Te explico el concepto.</div>
+    </div>
+    <div class="apa-tag-row"><span style="font-size:16px">💡</span><span class="apa-tag-text">APA — Ayuda Para Avanzar</span></div>
+    <div class="apa-title" id="apa-title">Tema</div>
+    <div class="apa-steps" id="apa-steps"></div>
+    <div class="apa-ex-box">
+      <div class="apa-ex-title">▶ Ejemplo resuelto</div>
+      <div class="apa-ex-body" id="apa-ex-body"></div>
+    </div>
+    <div class="apa-formula-box">
+      <div class="apa-formula-title">⭐ Para recordar</div>
+      <div class="apa-formula-text" id="apa-formula-text"></div>
+    </div>
+    <button class="apa-close-btn" onclick="closeApa()">✓ Entendido — Voy a intentarlo</button>
+  </div>
+</div>
+
 </body>
 </html>
