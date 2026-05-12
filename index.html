@@ -695,33 +695,131 @@ function makeQ(topic, diff){
   // ── 2° AÑO ──────────────────────────────────────────────────────────────
 
   else if(topic==='polinomios'){
+    // Helper: genera distractores polinómicos plausibles
+    function polyDistract(correctStr, varPart, constPart, count) {
+      var ws = new Set([correctStr]);
+      var att = 0;
+      while(ws.size <= count && att++ < 100) {
+        var dv = rnd(-3,3); if(dv===0) dv=1;
+        var dc = rnd(-4,4); if(dc===0) dc=1;
+        var newV = varPart + dv;
+        var newC = constPart + dc;
+        var s = newV>0 ? newV+'x' : (newV<0 ? '('+newV+'x)' : '');
+        var sep = newC>=0 ? ' + ' : ' − ';
+        var cs = Math.abs(newC);
+        ws.add(s + sep + cs);
+      }
+      return Array.from(ws).filter(function(x){return x!==correctStr;}).slice(0,count);
+    }
+    function polyDistractMono(correctStr, coef, count) {
+      var ws = new Set();
+      var att = 0;
+      while(ws.size < count && att++ < 100) {
+        var dc = rnd(1,3); var sign = Math.random()>.5?1:-1;
+        var nc = coef + sign*dc; if(nc<=0) nc=coef+dc;
+        ws.add(nc+'x²');
+      }
+      return Array.from(ws).filter(function(x){return x!==correctStr;}).slice(0,count);
+    }
+    function polyDistractFull(correctStr, varCoef, constCoef, count) {
+      var ws = new Set();
+      var att = 0;
+      while(ws.size < count && att++ < 100) {
+        var dv=rnd(1,3)*(Math.random()>.5?1:-1);
+        var dc=rnd(1,4)*(Math.random()>.5?1:-1);
+        var nv=varCoef+dv, nc=constCoef+dc;
+        var bStr2=nv>=0?' + '+nv:' − '+Math.abs(nv);
+        var cStr2=nc>=0?' + '+nc:' − '+Math.abs(nc);
+        ws.add('x²'+bStr2+'x'+cStr2);
+      }
+      return Array.from(ws).filter(function(x){return x!==correctStr;}).slice(0,count);
+    }
+
     if(d<=2){
-      var a=rnd(1,5),b=rnd(1,5),c2=rnd(0,3);q='('+a+'x + '+b+') + ('+c2+'x + '+rnd(1,5)+')';
-      var d2=rnd(1,5);q='('+a+'x + '+b+') + ('+c2+'x + '+d2+') = ?';answer=(a+c2)+'x + '+(b+d2);isStr=true;
+      var a=rnd(1,5),b=rnd(1,5),c2=rnd(1,4),d2=rnd(1,6);
+      q='('+a+'x + '+b+') + ('+c2+'x + '+d2+')';
+      var rv=a+c2, rc=b+d2;
+      answer=rv+'x + '+rc; isStr=true;
+      var ws=polyDistract(answer,rv,rc,3);
+      opts=([answer].concat(ws)).sort(function(){return Math.random()-.5;}).map(function(v){return{key:v,html:v};});
     } else if(d<=3){
-      var a=rnd(2,6),b=rnd(1,5);q='('+a+'x)('+b+'x) = ?';answer=String(a*b)+'x²';isStr=true;
+      var a=rnd(2,6),b=rnd(1,5);
+      q='('+a+'x) · ('+b+'x)';
+      answer=String(a*b)+'x²'; isStr=true;
+      var ws=polyDistractMono(answer,a*b,3);
+      opts=([answer].concat(ws)).sort(function(){return Math.random()-.5;}).map(function(v){return{key:v,html:v};});
     } else if(d<=4){
-      var a=rnd(1,5),b=rnd(1,5);q='(x + '+a+')(x + '+b+') = ?';answer='x² + '+(a+b)+'x + '+(a*b);isStr=true;
+      var a=rnd(1,5),b=rnd(1,5);
+      q='(x + '+a+')(x + '+b+')';
+      var sv=a+b, sc=a*b;
+      answer='x² + '+sv+'x + '+sc; isStr=true;
+      var ws=polyDistractFull(answer,sv,sc,3);
+      opts=([answer].concat(ws)).sort(function(){return Math.random()-.5;}).map(function(v){return{key:v,html:v};});
     } else {
-      var a=rnd(1,6),b=rnd(1,6);q='(x + '+a+')(x − '+b+') = x² + ?x − '+(a*b);answer=String(a-b);
+      var a=rnd(1,6),b=rnd(1,6);
+      var sv2=a-b;
+      q='(x + '+a+')(x − '+b+')\nEl coeficiente de x es:';
+      answer=String(sv2);
+      var ws=wrongNums(sv2,4,3);
+      opts=([answer].concat(ws.map(String))).sort(function(){return Math.random()-.5;}).map(function(v){return{key:v,html:v};});
     }
   }
 
   else if(topic==='ecuaciones2'){
-    // siempre raíces enteras para facilitar
-    var r1=rnd(-8,8),r2=rnd(-8,8);
-    var b=-(r1+r2),c=r1*r2;
-    var bStr=b>=0?'+ '+b:'− '+Math.abs(b);
-    var cStr=c>=0?'+ '+c:'− '+Math.abs(c);
+    // Raíces enteras, sin signos dobles ni signos de pregunta
+    var r1=rnd(1,7),r2=rnd(1,7);
+    // Alternamos signos para variedad
+    if(Math.random()>.5) r1=-r1;
+    if(Math.random()>.5) r2=-r2;
+    var bCoef=-(r1+r2), cCoef=r1*r2;
+    // Formateamos limpio: x² + bx + c
+    function termB(n){
+      if(n===0) return '';
+      if(n>0) return ' + '+n+'x';
+      return ' − '+Math.abs(n)+'x';
+    }
+    function termC(n){
+      if(n===0) return '';
+      if(n>0) return ' + '+n;
+      return ' − '+Math.abs(n);
+    }
+    var poly='x²'+termB(bCoef)+termC(cCoef)+' = 0';
+
     if(d<=2){
-      // una raíz entera simple
-      var a2=rnd(1,5),r=rnd(-10,10);q=a2+'x + '+(-a2*r)+' = 0 → x =';answer=String(r);
+      // Ecuación lineal simple ax + b = 0
+      var a2=rnd(2,5), root=rnd(-8,8);
+      var b2=-a2*root;
+      var bSign=b2>=0?' + ':' − ';
+      q=a2+'x'+bSign+Math.abs(b2)+' = 0\nx =';
+      answer=String(root);
+      var ws=wrongNums(root,5,3);
+      opts=([answer].concat(ws.map(String))).sort(function(){return Math.random()-.5;}).map(function(v){return{key:v,html:v};});
     } else if(d<=3){
-      q='x² '+bStr+'x '+cStr+' = 0 → raíces:';answer=r1+' y '+r2;isStr=true;
+      // Dar las dos raíces
+      q=poly+'\nRaíces:';
+      answer=r1+' y '+r2; isStr=true;
+      // Distractores: otras combinaciones de raíces plausibles
+      var ws2=[];
+      var tries=0;
+      while(ws2.length<3&&tries++<100){
+        var w1=rnd(-8,8),w2=rnd(-8,8);
+        var s=w1+' y '+w2;
+        if(s!==answer&&s!==(r2+' y '+r1)&&ws2.indexOf(s)<0) ws2.push(s);
+      }
+      opts=([answer].concat(ws2)).sort(function(){return Math.random()-.5;}).map(function(v){return{key:v,html:v};});
     } else if(d<=4){
-      q='x² '+bStr+'x '+cStr+' = 0 → discriminante =';answer=String(b*b-4*c);
+      // Discriminante
+      var disc=bCoef*bCoef-4*cCoef;
+      q=poly+'\nDiscriminante (b²−4ac) =';
+      answer=String(disc);
+      var ws=wrongNums(disc,Math.max(4,Math.abs(disc)/2+1),3);
+      opts=([answer].concat(ws.map(String))).sort(function(){return Math.random()-.5;}).map(function(v){return{key:v,html:v};});
     } else {
-      q='x² '+bStr+'x '+cStr+' = 0 → suma de raíces =';answer=String(r1+r2);
+      // Suma de raíces = -b/a
+      q=poly+'\nSuma de raíces =';
+      answer=String(r1+r2);
+      var ws=wrongNums(r1+r2,5,3);
+      opts=([answer].concat(ws.map(String))).sort(function(){return Math.random()-.5;}).map(function(v){return{key:v,html:v};});
     }
   }
 
